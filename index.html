@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8"/>
+<meta name="robots" content="noindex,nofollow">
 
 <head>
 <title>Zoe and Peter's Wedding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<meta name="robots" content="noindex,nofollow">
 <h1>Peter and Zoe's wedding website </h1>
 Under-development!
 
 <div class="container">
     <form class="form-rsvp">
-        <h2 class="form-rsvp-heading">RSVP Here</h2>
+        <h2>RSVP Here</h2>
+        <div class="collapse collapse-rsvpError">
+            <h3 class="text-danger">Failed to update database</h3>
+            <p id="rsvpErrorMsg"></p>
+        </div>
+        <div class="collapse collapse-rsvpSuccess">
+            <h3 class="text-success">Success! Thank you for updating us.</h3>
+        </div>
         <label for="inputName" class="sr-only">Name</label>
         <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
         <input type="button" onclick="clickSubmit()" value="Submit">
     </form>
+</div>
+<br>
+<div class="container">
+    <h2>Registry</h2> 
+    <p>Message TBD</p>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="https://www.w3schools.com/w3images/lights.jpg" target="_blank">
+                <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style="width:100%">
+                <div class="caption">
+                    <p>The Aurora Borealis</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
@@ -41,8 +67,12 @@ Under-development!
    
     function clickSubmit() {
         name = document.getElementById("inputName").value
-        console.log("Submitted"+name)
-        saveRsvp(name)
+        console.log("Submitted: "+name)
+        msg = saveRsvp(name)
+        document.getElementById("inputName").value=""
+    }
+    function rsvpSucceeded() {
+        $(".collapse-rsvpSuccess").collapse("show")
     }
     function saveRsvp(name) {
         var rsvpObject = {
@@ -50,9 +80,9 @@ Under-development!
         };
         firebase.database().ref('rsvps').push().set(rsvpObject)
             .then(function(snapshot) {
-                console.log("SUCCESS!")
+                rsvpSucceeded()
             }, function(error) {
-                console.log('error: ' + error);
+                rsvpErrored(error)
             }
         );
     }
