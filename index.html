@@ -71,18 +71,17 @@ Under-development!
         msg = saveRsvp(name)
         document.getElementById("inputName").value=""
     }
-    function rsvpSucceeded() {
-        $(".collapse-rsvpSuccess").collapse("show")
-    }
     function saveRsvp(name) {
         var rsvpObject = {
             name: name
         };
-        firebase.database().ref('rsvps').push().set(rsvpObject)
-            .then(function(snapshot) {
-                rsvpSucceeded()
+        firebase.database().ref('rsvps').push().set(rsvpObject).then(
+            function(snapshot) {
+                $(".collapse-rsvpSuccess").collapse("show")
+                $(".collapse-rsvpError").collapse("hide")
             }, function(error) {
-                rsvpErrored(error)
+                $(".collapse-rsvpSuccess").collapse("hide")
+                $(".collapse-rsvpError").collapse("show")
             }
         );
     }
