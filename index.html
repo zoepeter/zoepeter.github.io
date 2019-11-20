@@ -16,18 +16,40 @@
 Under-development!
 
 <div class="container">
-  <form class="form-rsvp">
-    <h2>RSVP Here</h2>
-    <div class="collapse collapse-rsvpError">
-      <h3 class="text-danger">Failed to update database</h3>
-      <p id="rsvpErrorMsg"></p>
+  <h2>RSVP Here</h2>
+  <div class="collapse collapse-rsvpError">
+    <h3 class="text-danger">Failed to update database</h3>
+    <p id="rsvpErrorMsg"></p>
+  </div>
+  <div class="collapse collapse-rsvpSuccess">
+    <h3 class="text-success">Success! Thank you for updating us.</h3>
+  </div>
+  <form>
+    <label>Name</label>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="rsvpFirstName" aria-describedby="rsvpFirstNameLabel" maxlength="32">
+        <small id="rsvpFirstNameLabel" class="form-text text-mutex">First Name</small>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="rsvpLastName" aria-describedby="rsvpLastNameLabel" maxlength="32">
+        <small id="rsvpLastNameLabel" class="form-text text-mutex">Last Name</small>
+      </div>
     </div>
-    <div class="collapse collapse-rsvpSuccess">
-      <h3 class="text-success">Success! Thank you for updating us.</h3>
+    <div class="form-group">
+      <label for="rsvpAttending">Are you attending?</label>
+      <input type="text" class="form-control" id="rsvpAttending">
     </div>
-    <label for="rsvpName" class="sr-only">Name</label>
-    <input type="text" id="rsvpName" class="form-control" placeholder="Name" required autofocus>
-    <input type="button" id="rsvpSubmit" value="Submit">
+    <div class="form-group">
+      <label for="rsvpWhoElse">Who else is coming with you?</label>
+      <input type="text" class="form-control" id="rsvpWhoElse">
+    </div>
+    <div class="form-group">
+      <label for="rsvpSongs">What songs would get you on the dance floor?</label>
+      <textarea class="form-control" id="rsvpSongs"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="rsvpSubmit">Submit</button>
   </form>
 </div>
 <br>
@@ -53,10 +75,10 @@ Under-development!
 <script>
   $(document).ready(function(){
     $("#rsvpSubmit").click(function() {
-      name = $("#rsvpName").val()
+      name = $("#rsvpFirstName").val()
       console.log("Submitted: "+name)
       msg = saveRsvp(name)
-      $("#rsvpName").val("")
+      $("#rsvpFirstName").val("")
     });
  
     // Initialize Firebase
