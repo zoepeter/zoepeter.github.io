@@ -6,22 +6,31 @@
 <head>
 <title>Zoe and Peter's Wedding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
--->
-<!--Bootstrap and dependencies-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
-<nav class="navbar navbar-expand flex-column" id="header"></nav>
+<body>
+<div class="fixed-top myheader">
+  <h1 class="mytitle">Zoe+Peter</h1>
+  <nav class="navbar navbar-light navbar-expand flex-column">
+    <ol class="navbar-nav flex-row">
+      <li class="nav-item"><a class="nav-link" id="navHome" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" id="navWedding" href="thewedding.html">The Wedding</a></li>
+      <li class="nav-item"><a class="nav-link" id="navGetting" href="gettingthere.html">Getting There</a></li>
+      <li class="nav-item"><a class="nav-link" id="navRegistry" href="registry.html">Registry</a></li>
+      <li class="nav-item"><a class="nav-link" id="navRsvp" href="rsvp.html">RSVP</a></li>
+    </ol>
+  </nav>
+</div>
 
 <div class="container">
-  <h2>RSVP</h2>
+  <br>
+  <p>Please let us know if you can attend by Feb 1, 2020</p>
   <br>
   <div class="collapse collapse-rsvpError">
     <h3 class="text-danger">Failed to update database</h3>
@@ -32,7 +41,7 @@
   </div>
   <form>
     <div class="form-group col-md-12"><label>Name</label></div>
-    <div class="form-row">
+    <div class="form-row col-md-12">
       <div class="form-group col-md-6">
         <input type="text" class="form-control" id="rsvpFirstName" aria-describedby="rsvpFirstNameLabel" maxlength="32">
         <small id="rsvpFirstNameLabel" class="form-text text-mutex">First Name</small>
@@ -71,7 +80,7 @@
 <script>
   $(document).ready(function(){
     // Pull in header
-    $("#header").load("header.html")
+//    $("#header").load("header.html")
 
     // Initialize Firebase
     var firebaseConfig = {
@@ -91,6 +100,7 @@
     $("#rsvpSubmit").click(submitRsvp);
  
     $("#rsvpSongs").css("resize", "vertical");
+    $("#navRsvp").addClass("active");
 
     refreshRegistry();
   });
