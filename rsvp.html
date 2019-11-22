@@ -15,18 +15,14 @@
 </head>
 
 <body>
-<div class="fixed-top myheader">
-  <h1 class="mytitle">Zoe+Peter</h1>
-  <nav class="navbar navbar-light navbar-expand flex-column">
-    <ol class="navbar-nav flex-row">
-      <li class="nav-item"><a class="nav-link" id="navHome" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" id="navWedding" href="thewedding.html">The Wedding</a></li>
-      <li class="nav-item"><a class="nav-link" id="navGetting" href="gettingthere.html">Getting There</a></li>
-      <li class="nav-item"><a class="nav-link" id="navRegistry" href="registry.html">Registry</a></li>
-      <li class="nav-item"><a class="nav-link" id="navRsvp" href="rsvp.html">RSVP</a></li>
-    </ol>
-  </nav>
-</div>
+
+<div id="header"></div>
+<script>
+  $("#header").load("header.html", function() {
+    // Load has completed now
+    $("#navRsvp").addClass("active");
+  });
+</script>
 
 <div class="container">
   <br>
