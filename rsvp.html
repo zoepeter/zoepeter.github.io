@@ -34,38 +34,15 @@
       <label for="rsvpSongs">What songs will get you on the dance floor?</label>
       <textarea class="form-control" id="rsvpSongs" rows="2"></textarea>
     </div>
-    <div class="form-group col-md-12">
-      <button type="button" class="btn btn-primary" id="rsvpSubmit">Submit</button>
-    </div>
-  </form>
-  <!--
-  <div class="collapse collapse-rsvpError">
-    <h3 class="text-danger">Failed to update database</h3>
-    <p id="rsvpErrorMsg"></p>
-  </div>
-  <div class="collapse collapse-rsvpSuccess">
-    <h3 class="text-success">Success! Thank you for updating us.</h3>
-  </div>
-  -->
-<!--
-  <div class="modal fade" id="successPopup" tabindex="-1" role="dialog" aria-labelledby="popupLabel" ariai-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          </button>
-        </div>
-        <div class="modal-body">
-          Thank you for updating us!
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-        </div>
+    <div class="form-group col-md-12 spacious">
+      <div id="collapseSubmit">
+        <button type="button" class="btn btn-primary" id="rsvpSubmit">Submit</button>
       </div>
-    </div>
-  </div>
--->
+      <div class="collapse" id="collapseSpinner">
+        <div class="spinner-border" role="status">
+      </div>
+  </form>
+
   <!-- wrap script in the div to make browser happy -->
   <script>
     $(document).ready(function(){
@@ -73,14 +50,15 @@
       // Initialise Html
       $("#rsvpSubmit").click(submitRsvp);
 
+      $("#collapseSubmit").collapse("show");
       $("#rsvpSongs").css("resize", "vertical");
       $("#navRsvp").addClass("active");
-
-      refreshRegistry();
-      console.log("Done loading rsvp");
     });
 
 function submitRsvp(name) {
+  $("#collapseSubmit").collapse("hide");
+  $("#collapseSpinner").collapse("show");
+
   var rsvpObject = {
     firstName: $("#rsvpFirstName").val(),
     lastName: $("#rsvpLastName").val(),
@@ -93,9 +71,9 @@ function submitRsvp(name) {
   console.log("Submitted rsvp for "+rsvpObject.firstName)
   firebase.database().ref('rsvps').push().set(rsvpObject).then(
     function(snapshot) {
-      //$(".collapse-rsvpSuccess").collapse("show")
-      //$(".collapse-rsvpError").collapse("hide")
       $("#successDialog").modal("show");
+      $("#collapseSubmit").collapse("show");
+      $("#collapseSpinner").collapse("hide");
     }, function(error) {
       alert("Sorry, something went wrong and your RSVP didn't send!\nCould you please conact peter.anastasiou@gmail.com instead");
     }

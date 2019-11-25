@@ -27,3 +27,10 @@ body {
 }
 } 
 
+.collapsing {
+    transition: none;
+}
+
+.spacious {
+    padding-bottom: 80px;
+}
