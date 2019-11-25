@@ -1,7 +1,44 @@
 <div class="container">
-  <br>
+  <h2>Répondez S'il Vous Plaît</h2>
   <p>Please let us know if you can attend by Feb 1, 2020</p>
-  <br>
+  <form>
+    <div class="form-row col-md-12"><label>Name</label></div>
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="rsvpFirstName" aria-describedby="rsvpFirstNameLabel" maxlength="32"></input>
+        <small id="rsvpFirstNameLabel" class="form-text text-mutex">First Name</small>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="rsvpLastName" aria-describedby="rsvpLastNameLabel" maxlength="32"></input>
+        <small id="rsvpLastNameLabel" class="form-text text-mutex">Last Name</small>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="rsvpAttending">Are you attending?</label>
+      <input type="text" class="form-control" id="rsvpAttending"></input>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="rsvpDietary">Do you have any specific dietary requirements?</label>
+      <input type="text" class="form-control" id="rsvpDietary"></input>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="rsvpWhoElse">Who else is coming with you?</label>
+      <input type="text" class="form-control" id="rsvpWhoElse"></input>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="rsvpBusInterest"> Would you take a bus* if it was an option?</label>
+      <input type="text" class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer"></input>
+      <small id="busExplainer">*If we get enough interest, we will provide a bus from a central location to the venue and back.</small>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="rsvpSongs">What songs will get you on the dance floor?</label>
+      <textarea class="form-control" id="rsvpSongs" rows="2"></textarea>
+    </div>
+    <div class="form-group col-md-12">
+      <button type="button" class="btn btn-primary" id="rsvpSubmit">Submit</button>
+    </div>
+  </form>
+  <!--
   <div class="collapse collapse-rsvpError">
     <h3 class="text-danger">Failed to update database</h3>
     <p id="rsvpErrorMsg"></p>
@@ -9,91 +46,65 @@
   <div class="collapse collapse-rsvpSuccess">
     <h3 class="text-success">Success! Thank you for updating us.</h3>
   </div>
-  <form>
-    <div class="form-group col-md-12"><label>Name</label></div>
-    <div class="form-row col-md-12">
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="rsvpFirstName" aria-describedby="rsvpFirstNameLabel" maxlength="32">
-        <small id="rsvpFirstNameLabel" class="form-text text-mutex">First Name</small>
+  -->
+<!--
+  <div class="modal fade" id="successPopup" tabindex="-1" role="dialog" aria-labelledby="popupLabel" ariai-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          Thank you for updating us!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
       </div>
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="rsvpLastName" aria-describedby="rsvpLastNameLabel" maxlength="32">
-        <small id="rsvpLastNameLabel" class="form-text text-mutex">Last Name</small>
-      </div>
     </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpAttending">Are you attending?</label>
-      <input type="text" class="form-control" id="rsvpAttending">
-    </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpWhoElse">Who else is coming with you?</label>
-      <input type="text" class="form-control" id="rsvpWhoElse">
-    </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpBusInterest"> Would you take a bus* if it was an option?</label>
-      <input type="text" class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer">
-      <small id=busExplainer>*If we get enough interest, we will provide a bus from a central location to the venue and back.</small>
-    </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpSongs">What songs will get you on the dance floor?</label>
-      <textarea class="form-control" id="rsvpSongs" rows="2"></textarea>
-    </div>
-    <button type="button" class="btn btn-primary" id="rsvpSubmit">Submit</button>
-  </form>
+  </div>
+-->
+  <!-- wrap script in the div to make browser happy -->
+  <script>
+    $(document).ready(function(){
+      console.log("Loading rsvp")
+      // Initialise Html
+      $("#rsvpSubmit").click(submitRsvp);
+
+      $("#rsvpSongs").css("resize", "vertical");
+      $("#navRsvp").addClass("active");
+
+      refreshRegistry();
+      console.log("Done loading rsvp");
+    });
+
+function submitRsvp(name) {
+  var rsvpObject = {
+    firstName: $("#rsvpFirstName").val(),
+    lastName: $("#rsvpLastName").val(),
+    attending: $("#rsvpAttending").val(),
+    whoElse: $("#rsvpWhoElse").val(),
+    busInterest: $("#rsvpBusInterest").val(),
+    dietaryReq: $("#rsvpDietary").val(),
+    songSuggestions: $("#rsvpSongs").val()
+  };
+  console.log("Submitted rsvp for "+rsvpObject.firstName)
+  firebase.database().ref('rsvps').push().set(rsvpObject).then(
+    function(snapshot) {
+      //$(".collapse-rsvpSuccess").collapse("show")
+      //$(".collapse-rsvpError").collapse("hide")
+      //$("successPopup").modal("show");
+      alert("Your attendance has been noted\n\nThank you for updating us!");
+    }, function(error) {
+      //$(".collapse-rsvpSuccess").collapse("hide")
+      //$(".collapse-rsvpError").collapse("show")
+    }
+  );
+}
+function refreshRegistry() {
+
+}
+  </script>
 </div>
-
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
-
-<script>
-  $(document).ready(function(){
-    // Initialize Firebase
-    var firebaseConfig = {
-      apiKey: "AIzaSyCPdEtSwodTo2Kg1LJk06bSmtGeIH1zyLk",
-      authDomain: "zoepeter-fab29.firebaseapp.com",
-      databaseURL: "https://zoepeter-fab29.firebaseio.com",
-      projectId: "zoepeter-fab29",
-      storageBucket: "zoepeter-fab29.appspot.com",
-      messagingSenderId: "21329665131",
-      appId: "1:21329665131:web:84d6180895af345140652e",
-      measurementId: "G-5SP8B0650R"
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-
-    // Initialise Html
-    $("#rsvpSubmit").click(submitRsvp);
- 
-    $("#rsvpSongs").css("resize", "vertical");
-    $("#navRsvp").addClass("active");
-
-    refreshRegistry();
-  });
-
-  function submitRsvp(name) {
-    var rsvpObject = {
-      firstName: $("#rsvpFirstName").val(),
-      lastName: $("#rsvpLastName").val(),
-      attending: $("#rsvpAttending").val(),
-      whoElse: $("#rsvpWhoElse").val(),
-      busInterest: $("#rsvpBusInterest").val(),
-      songSuggestions: $("#rsvpSongs").val()
-    };
-    console.log("Submitted: "+rsvpObject)
-    firebase.database().ref('rsvps').push().set(rsvpObject).then(
-      function(snapshot) {
-        $(".collapse-rsvpSuccess").collapse("show")
-        $(".collapse-rsvpError").collapse("hide")
-      }, function(error) {
-        $(".collapse-rsvpSuccess").collapse("hide")
-        $(".collapse-rsvpError").collapse("show")
-      }
-    );
-  }
-  function refreshRegistry() {
-    
-  }
-</script>
-

@@ -20,3 +20,10 @@ body {
   font-family: 'Josefin Sans';
   text-align: center;
 }
+
+@media screen and (max-width: 601px) {
+.mynav {
+  font-size: 12px;
+}
+} 
+

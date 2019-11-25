@@ -13,6 +13,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 
@@ -22,11 +26,11 @@
   <h1 class="mytitle">Zoe+Peter</h1>
   <nav class="navbar navbar-light navbar-expand flex-column">
     <ol class="navbar-nav flex-row">
-      <li class="nav-item"><a class="nav-link" id="home">Home</a></li>
-      <li class="nav-item"><a class="nav-link" id="wedding">The Wedding</a></li>
-      <li class="nav-item"><a class="nav-link" id="getting">Getting There</a></li>
-      <li class="nav-item"><a class="nav-link" id="registry">Registry</a></li>
-      <li class="nav-item"><a class="nav-link" id="rsvp">RSVP</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#" id="home">Home</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#" id="wedding">The Wedding</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#" id="getting">Getting There</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#" id="registry">Registry</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#" id="rsvp">RSVP</a></li>
     </ol>
   </nav>
 </div>
@@ -41,6 +45,20 @@
     $("#getting").click(load_page);
     $("#registry").click(load_page);
     $("#rsvp").click(load_page);
+    // Initialize Firebase
+    var firebaseConfig = {
+      apiKey: "AIzaSyCPdEtSwodTo2Kg1LJk06bSmtGeIH1zyLk",
+      authDomain: "zoepeter-fab29.firebaseapp.com",
+      databaseURL: "https://zoepeter-fab29.firebaseio.com",
+      projectId: "zoepeter-fab29",
+      storageBucket: "zoepeter-fab29.appspot.com",
+      messagingSenderId: "21329665131",
+      appId: "1:21329665131:web:84d6180895af345140652e",
+      measurementId: "G-5SP8B0650R"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
     load_page_("home");
   });
 
