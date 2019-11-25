@@ -18,17 +18,46 @@
 
 <body>
 
-<div id="header"></div>
-<script>
-  $("#header").load("header.html", function() {
-    // Load has completed now
-    $("#navHome").addClass("active");
-  });
-</script>
+<div class="fixed-top myheader">
+  <h1 class="mytitle">Zoe+Peter</h1>
+  <nav class="navbar navbar-light navbar-expand flex-column">
+    <ol class="navbar-nav flex-row">
+      <li class="nav-item"><a class="nav-link" id="home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" id="wedding">The Wedding</a></li>
+      <li class="nav-item"><a class="nav-link" id="getting">Getting There</a></li>
+      <li class="nav-item"><a class="nav-link" id="registry">Registry</a></li>
+      <li class="nav-item"><a class="nav-link" id="rsvp">RSVP</a></li>
+    </ol>
+  </nav>
+</div>
 
-<p>
-Come celebrate with us!
-</p>
+<div id="content">
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("#home").click(load_page);
+    $("#wedding").click(load_page);
+    $("#getting").click(load_page);
+    $("#registry").click(load_page);
+    $("#rsvp").click(load_page);
+    load_page_("home");
+  });
+
+function load_page(event){
+  load_page_(this.id);
+}
+function load_page_(name){
+  // Remove active highlight from all nav links
+  $(".nav-link").removeClass("active")
+  // Load in content from same named html
+  $("#content").load(name+".html", function() {
+    // Highlight current nav link
+    $("#"+name).addClass("active")
+  });
+}
+
+</script>
 
 </body>
 </html>
