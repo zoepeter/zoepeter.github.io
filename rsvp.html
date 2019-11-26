@@ -39,8 +39,9 @@
         <button type="button" class="btn btn-primary" id="rsvpSubmit">Submit</button>
       </div>
       <div class="collapse" id="collapseSpinner">
-        <div class="spinner-border" role="status">
+        <div class="spinner-border" role="status"></div>
       </div>
+    </div>
   </form>
 
   <!-- wrap script in the div to make browser happy -->
@@ -75,12 +76,9 @@ function submitRsvp(name) {
       $("#collapseSubmit").collapse("show");
       $("#collapseSpinner").collapse("hide");
     }, function(error) {
-      alert("Sorry, something went wrong and your RSVP didn't send!\nCould you please conact peter.anastasiou@gmail.com instead");
+      alert("Sorry, something went wrong and your RSVP didn't send!\nCould you please conact zoepeterwedding2020@gmail.com instead");
     }
   );
-}
-function refreshRegistry() {
-
 }
   </script>
 </div>

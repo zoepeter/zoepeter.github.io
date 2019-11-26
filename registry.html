@@ -1,14 +1,46 @@
 <div class="container">
   <h2>Registry</h2>
-  <p>Your presence is the greatest present. However, if you really want to grace us with a gift, please refer to this gift registry.</p>
-  <div class="row">
-    <div class="col-md-4">
-      <a href="https://www.w3schools.com/w3images/lights.jpg" target="_blank">
-        <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style="width:100%">
-        <div class="caption">
-          <p>The Aurora Borealis</p>
-        </div>
-      </a>
-    </div>
+  <p>
+  Your presence is the greatest present. However, if you really want to grace us with a gift, please refer to this gift registry.
+  </p>
+
+
+  <div class="row spacious" id="regTable">
   </div>
+
+  <script>
+    $(document).ready(function(){
+      console.log("Loading registry")
+      refreshRegistry();
+    });
+
+function refreshRegistry() {
+  $("#regTable").empty();
+  $("#regTable").append('<div class="spinner-border" role="status"></div>');
+
+  firebase.database().ref('registry').once("value").then(
+    refreshRegistryElements,
+    function(error) {
+      alert("Sorry! something went wrong and the registry did not load\nPlease contact zoepeterwedding2020@gmail.com");
+    });
+}
+function refreshRegistryElements(snapshot) {
+  $("#regTable").empty();
+
+  // for all gifts in the registry:
+  registry = snapshot.val();
+  for( var giftname in registry ){
+    obj = registry[giftname];
+    console.log(giftname);
+
+    var col = $("<div></div>", {"class":"col-md-4"});
+    var lnk = $("<a></a>", {"href":obj.link, "target":"_blank"});
+    lnk.append($("<img></img>", {"src":obj.img, "alt":giftname, "style":"width:100%"}));
+    lnk.append('<div class="caption"><p>'+obj.text+'</p></div>');
+    col.append(lnk);
+    $("#regTable").append(col);
+  }
+  console.log($("#regTable").html());
+}
+  </script>
 </div>

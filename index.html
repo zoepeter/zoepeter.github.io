@@ -25,13 +25,13 @@
 <div class="fixed-top myheader">
   <h1 class="mytitle">Zoe+Peter</h1>
   <nav class="navbar navbar-light navbar-expand flex-column">
-    <ol class="navbar-nav flex-row">
-      <li class="nav-item mynav"><a class="nav-link" href="#" id="home">Home</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#" id="wedding">The Wedding</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#" id="getting">Getting There</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#" id="registry">Registry</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#" id="rsvp">RSVP</a></li>
-    </ol>
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item mynav"><a class="nav-link" href="#home" id="home">Home</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#wedding" id="wedding">The Wedding</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#getting" id="getting">Getting There</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#registry" id="registry">Registry</a></li>
+      <li class="nav-item mynav"><a class="nav-link" href="#rsvp" id="rsvp">RSVP</a></li>
+    </ul>
   </nav>
 </div>
 
@@ -57,11 +57,11 @@
 
 <script>
   $(document).ready(function(){
-    $("#home").click(load_page);
-    $("#wedding").click(load_page);
-    $("#getting").click(load_page);
-    $("#registry").click(load_page);
-    $("#rsvp").click(load_page);
+    //$("#home").click(load_page);
+    //$("#wedding").click(load_page);
+    //$("#getting").click(load_page);
+    //$("#registry").click(load_page);
+    //$("#rsvp").click(load_page);
     // Initialize Firebase
     var firebaseConfig = {
       apiKey: "AIzaSyCPdEtSwodTo2Kg1LJk06bSmtGeIH1zyLk",
@@ -76,11 +76,21 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
-    load_page_("home");
+    $(window).bind("hashchange", function(){
+      reload_page();
+    });
+
+    reload_page();
   });
 
-function load_page(event){
-  load_page_(this.id);
+function reload_page(){
+  var hash = window.location.hash;
+  if( hash ){
+    console.log("load "+hash);
+    load_page_(hash.substring(1));
+  }else{
+    load_page_("home");
+  }
 }
 function load_page_(name){
   // Remove active highlight from all nav links
