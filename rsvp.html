@@ -1,4 +1,20 @@
 <div class="container">
+  <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="dialogLabel" ariai-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dialogLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body" id="dialogText">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <h2>Répondez S'il Vous Plaît</h2>
   <p>Please let us know if you can attend by Feb 1, 2020</p>
   <form>
@@ -44,7 +60,6 @@
     </div>
   </form>
 
-  <!-- wrap script in the div to make browser happy -->
   <script>
     $(document).ready(function(){
       console.log("Loading rsvp")
@@ -57,9 +72,6 @@
     });
 
 function submitRsvp(name) {
-  $("#collapseSubmit").collapse("hide");
-  $("#collapseSpinner").collapse("show");
-
   var rsvpObject = {
     firstName: $("#rsvpFirstName").val(),
     lastName: $("#rsvpLastName").val(),
@@ -69,10 +81,31 @@ function submitRsvp(name) {
     dietaryReq: $("#rsvpDietary").val(),
     songSuggestions: $("#rsvpSongs").val()
   };
+
+  var reqList = [];
+  if( !rsvpObject.firstName ){ reqList.push("first name"); }
+  if( !rsvpObject.lastName ){ reqList.push("last name"); }
+  if( !rsvpObject.attending ){ reqList.push("attending"); }
+  if( reqList.length > 0 ){
+		msg = ""; 
+    for( const s of reqList ){
+			msg += "<p>Please fill out the "+s+" field.</p>\n";
+		}
+		$("#dialogLabel").text("Incomplete");
+    $("#dialogText").html(msg);
+    $("#dialog").modal("show");
+    return;
+  }
+
+  $("#collapseSubmit").collapse("hide");
+  $("#collapseSpinner").collapse("show");
+
   console.log("Submitted rsvp for "+rsvpObject.firstName)
   firebase.database().ref('rsvps').push().set(rsvpObject).then(
     function(snapshot) {
-      $("#successDialog").modal("show");
+			$("#dialogLabel").text("Success");
+      $("#dialogText").text("Thank you for updating us!");
+      $("#dialog").modal("show");
       $("#collapseSubmit").collapse("show");
       $("#collapseSpinner").collapse("hide");
     }, function(error) {
