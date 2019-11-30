@@ -4,11 +4,6 @@ body {
     font-weight: 300;
 }
 
-.myheader {
-    background: lightblue;
-    padding: 10px;
-}
-
 div.sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -16,14 +11,23 @@ div.sticky {
     z-index:9999;
     background: white;
     padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 750px;
+}
+
+.underlined {
+    border-bottom: 1px;
+    border-color: lightgray;
+    border-bottom-style:solid;
 }
 
 .container-fluid {
     margin-right: auto;
     margin-left: auto;
     max-width: 800px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .mynav {
@@ -35,7 +39,7 @@ div.sticky {
     font-size: 77px;
     text-align: center;
     line-height: 1.0;
-    padding-top: 20px;
+    padding-top: 40px;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }

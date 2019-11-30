@@ -32,7 +32,7 @@
 </div>
 
 <div class="sticky">
-  <nav class="navbar navbar-light navbar-expand flex-column">
+  <nav id="nav" class="navbar navbar-light navbar-expand flex-column">
     <ul class="navbar-nav flex-row">
       <li class="nav-item mynav"><a class="nav-link" href="#home" id="home">Home</a></li>
       <li class="nav-item mynav"><a class="nav-link" href="#wedding" id="wedding">The Wedding</a></li>
@@ -48,6 +48,8 @@
 
 <script>
   $(document).ready(function(){
+
+    window.onscroll = scrolling;
 
     $(window).bind("hashchange", function(){
       reload_page();
@@ -90,6 +92,14 @@ function load_page_(name){
   });
 }
 
+function scrolling(){
+  console.log($(".sticky").offset().top > window.pageYOffset);
+  if($(".sticky").offset().top <= window.pageYOffset){
+    $("#nav").addClass("underlined");
+  }else{
+    $("#nav").removeClass("underlined");
+  }
+}
 </script>
 
 </body>
