@@ -1,13 +1,13 @@
 <div>
-  <div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="dialogLabel" ariai-hidden="true">
+  <div class="modal mymodal fade" id="rsvpDialog" tabindex="-1" role="dialog" aria-labelledby="rsvpDialogLabel" ariai-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="dialogLabel"></h5>
+          <h5 class="modal-title" id="rsvpDialogLabel"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           </button>
         </div>
-        <div class="modal-body" id="dialogText">
+        <div class="modal-body" id="rsvpDialogText">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -91,9 +91,9 @@ function submitRsvp(name) {
     for( const s of reqList ){
 			msg += "<p>Please fill out the "+s+" field.</p>\n";
 		}
-		$("#dialogLabel").text("Incomplete");
-    $("#dialogText").html(msg);
-    $("#dialog").modal("show");
+		$("#rsvpDialogLabel").text("Incomplete");
+    $("#rsvpDialogText").html(msg);
+    $("#rsvpDialog").modal("show");
     return;
   }
 
@@ -103,9 +103,9 @@ function submitRsvp(name) {
   console.log("Submitted rsvp for "+rsvpObject.firstName)
   firebase.database().ref('rsvps').push().set(rsvpObject).then(
     function(snapshot) {
-			$("#dialogLabel").text("Success");
-      $("#dialogText").text("Thank you for updating us!");
-      $("#dialog").modal("show");
+			$("#rsvpDialogLabel").text("Success");
+      $("#rsvpDialogText").text("Thank you for updating us!");
+      $("#rsvpDialog").modal("show");
       $("#collapseSubmit").collapse("show");
       $("#collapseSpinner").collapse("hide");
     }, function(error) {

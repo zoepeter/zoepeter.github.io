@@ -1,7 +1,38 @@
 <div>
+  <div class="modal mymodal fade" id="regDialog" tabindex="-1" role="dialog" aria-labelledby="regDialogLabel" ariai-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="regDialogLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="regDialogText">
+          </p>
+          <p>
+          This gift is available at the above link, but an equivalent one can be bought anywhere.
+          </p>
+          <p>
+          If you wish to mark this gift as taken, please submit your name. This information will be kept private but will make the gift unavailable to other guests.
+          </p>
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Name" id="regName"></input>
+            </div>
+          </form>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
   <h2>Registry</h2>
   <p>
-  Your presence is the greatest present. However, if you really want to grace us with a gift, please refer to this gift registry.
+  Your presence is the greatest present. However, if you really want to grace us with a gift, we have picked out a few suggestions.
   </p>
 
 
@@ -16,7 +47,7 @@
 
 function refreshRegistry() {
   $("#regTable").empty();
-  $("#regTable").append('<div class="spinner-border" role="status"></div>');
+  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
 
   firebase.database().ref('registry').once("value").then(
     refreshRegistryElements,
@@ -24,17 +55,25 @@ function refreshRegistry() {
       alert("Sorry! something went wrong and the registry did not load\nPlease contact zoepeterwedding2020@gmail.com");
     });
 }
+
+function registryDialog(giftname) {
+  var obj = registry[giftname];
+  $("#regDialogLabel").text(giftname);
+  $("#regDialogText").text(obj.text+" "+obj.quantity);
+  console.log(giftname);
+  console.log(obj);
+  $("#regDialog").modal("show");
+}
+
 function refreshRegistryElements(snapshot) {
   $("#regTable").empty();
 
   // for all gifts in the registry:
   registry = snapshot.val();
   for( var giftname in registry ){
-    obj = registry[giftname];
-    console.log(giftname);
-
+    var obj = registry[giftname];
     var col = $("<div></div>", {"class":"col-md-4"});
-    var lnk = $("<a></a>", {"href":obj.link, "target":"_blank"});
+    var lnk = $('<div></div>', {"class":"regLink", "onclick":"registryDialog('"+giftname+"')"});
     lnk.append($("<img></img>", {"src":obj.img, "alt":giftname, "style":"width:100%"}));
     lnk.append('<div class="caption"><p>'+obj.text+'</p></div>');
     col.append(lnk);

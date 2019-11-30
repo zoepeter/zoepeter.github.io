@@ -4,11 +4,19 @@ body {
     font-weight: 300;
 }
 
+h2 {
+    /*font-family: 'Sacramento', cursive;*/
+}
+
+.mymodal {
+    margin-top: 40px;
+}
+
 div.sticky {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index:9999;
+    z-index:1;
     background: white;
     padding: 0px;
     margin-right: auto;
@@ -20,6 +28,10 @@ div.sticky {
     border-bottom: 1px;
     border-color: lightgray;
     border-bottom-style:solid;
+}
+
+.myspinner {
+    margin-left: 20px;
 }
 
 .container-fluid {
@@ -47,6 +59,10 @@ div.sticky {
 .mysubtitle {
     text-align: center;
     margin: 0px;
+}
+
+.regLink {
+    cursor:pointer;
 }
 
 @media screen and (max-width: 500px) {

@@ -83,6 +83,9 @@ function reload_page(){
 }
 
 function load_page_(name){
+  // Scroll to top
+  document.body.scrollTop = 0;// For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   // Remove active highlight from all nav links
   $(".nav-link").removeClass("active")
   // Load in content from same named html
@@ -93,7 +96,7 @@ function load_page_(name){
 }
 
 function scrolling(){
-  console.log($(".sticky").offset().top > window.pageYOffset);
+  // if scrolled past the sticky bit, give it an underline
   if($(".sticky").offset().top <= window.pageYOffset){
     $("#nav").addClass("underlined");
   }else{
