@@ -26,9 +26,12 @@
 
 <body>
 
-<div class="fixed-top myheader">
+<div class="mytop">
   <h1 class="mytitle">Zoe & Peter</h1>
-  <p>29 March 2020</p>
+  <p class="mysubtitle">29 March 2020</p>
+</div>
+
+<div class="sticky">
   <nav class="navbar navbar-light navbar-expand flex-column">
     <ul class="navbar-nav flex-row">
       <li class="nav-item mynav"><a class="nav-link" href="#home" id="home">Home</a></li>
@@ -40,16 +43,16 @@
   </nav>
 </div>
 
-<div id="content">
+<div id="content" class="container-fluid">
 </div>
 
 <script>
   $(document).ready(function(){
-    //$("#home").click(load_page);
-    //$("#wedding").click(load_page);
-    //$("#getting").click(load_page);
-    //$("#registry").click(load_page);
-    //$("#rsvp").click(load_page);
+
+    $(window).bind("hashchange", function(){
+      reload_page();
+    });
+
     // Initialize Firebase
     var firebaseConfig = {
       apiKey: "AIzaSyCPdEtSwodTo2Kg1LJk06bSmtGeIH1zyLk",
@@ -64,10 +67,6 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
-    $(window).bind("hashchange", function(){
-      reload_page();
-    });
-
     reload_page();
   });
 
@@ -80,6 +79,7 @@ function reload_page(){
     load_page_("home");
   }
 }
+
 function load_page_(name){
   // Remove active highlight from all nav links
   $(".nav-link").removeClass("active")
