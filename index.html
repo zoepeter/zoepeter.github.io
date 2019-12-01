@@ -8,12 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-											 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+											 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+                       crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-				integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+				integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+      crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
@@ -24,7 +27,7 @@
 <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="leaves">
 
 <div class="mytop">
   <h1 class="mytitle">Zoe & Peter</h1>
@@ -48,12 +51,10 @@
 
 <script>
   $(document).ready(function(){
-
+    // Window Event handlers
     window.onscroll = scrolling;
-
-    $(window).bind("hashchange", function(){
-      reload_page();
-    });
+    $(window).resize(resizing);
+    $(window).bind("hashchange", reload_page);
 
     // Initialize Firebase
     var firebaseConfig = {
@@ -69,7 +70,9 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
+    // Must call initially:
     reload_page();
+    resizing();
   });
 
 function reload_page(){
@@ -93,6 +96,25 @@ function load_page_(name){
     // Highlight current nav link
     $("#"+name).addClass("active")
   });
+}
+
+function resizing(){
+  var w = $(window).width();
+  if( w > 600 ){
+    var rhide = 0;
+    var lhide = 0;
+    if( w < 1300 ){
+      rhide = 1300-w;
+    }
+    if( w < 900 ){
+      lhide = 900-w;
+    }
+    $(".leaves").css('background-position',
+      (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
+    $("#mybody").addClass("leaves");
+  }else{
+    $("#mybody").removeClass("leaves");
+  }
 }
 
 function scrolling(){

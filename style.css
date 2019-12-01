@@ -78,3 +78,16 @@ div.sticky {
 .spacious {
     padding-bottom: 80px;
 }
+
+.imgOfUs {
+    display: flex;
+    justify-content: center;
+}
+
+.leaves {
+    background-image: url('res/leavesBL.jpg'), url('res/leavesR.jpg');
+    background-position: -10% 100%, 100% 20%;
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, no-repeat;
+}
+

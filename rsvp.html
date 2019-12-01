@@ -87,7 +87,7 @@ function submitRsvp(name) {
   if( !rsvpObject.lastName ){ reqList.push("last name"); }
   if( !rsvpObject.attending ){ reqList.push("attending"); }
   if( reqList.length > 0 ){
-		msg = ""; 
+		var msg = ""; 
     for( const s of reqList ){
 			msg += "<p>Please fill out the "+s+" field.</p>\n";
 		}
