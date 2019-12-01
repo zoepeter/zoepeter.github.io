@@ -27,7 +27,7 @@
 <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
 </head>
 
-<body class="leaves">
+<body id="mybody">
 
 <div class="mytop">
   <h1 class="mytitle">Zoe & Peter</h1>
@@ -109,9 +109,9 @@ function resizing(){
     if( w < 900 ){
       lhide = 900-w;
     }
-    $(".leaves").css('background-position',
-      (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
-    $("#mybody").addClass("leaves");
+    $("#mybody").addClass("leaves")
+      .css('background-position',
+        (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
   }else{
     $("#mybody").removeClass("leaves");
   }
