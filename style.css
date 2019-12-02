@@ -65,6 +65,14 @@ div.sticky {
     cursor:pointer;
 }
 
+.regImg {
+    opacity: 1;
+}
+
+.regLink:hover .regImg {
+    opacity: 0.7;
+}
+
 @media screen and (max-width: 500px) {
     .mynav {
         font-size: 3vw;

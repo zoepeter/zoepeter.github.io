@@ -1,0 +1,29 @@
+#Note: read/write is not allowed by default, and, once allowed, applies to all children
+
+registry/       #read-allowed
+    $gift/
+        counter/   # write-allowed
+                   # counter is initially 0 - incremented by pushing nodes to it
+            $push/
+                true    Needs some value, but not important
+
+registryNames/
+    $gift/      #append-allowed
+        $push/  
+            $name
+
+rsvps/          #append-allowed
+    $push/
+        $name
+
+# on refresh:
+load registry
+for all gifts
+count number of nodes in counter
+make html to display info on it
+
+# on registry submit:
+push a node to counter
+TODO FIREBASE RULE FOR PREVENTING DOUBLE UP OF GIFTS! CHECK numChildren and the quantity field
+push node to registryNames
+

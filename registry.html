@@ -1,7 +1,4 @@
 <div>
-
-<img width="100%" src='https://media.giphy.com/media/EdBq6OQN7JUly/giphy.gif'></img>
-
   <div class="modal mymodal fade" id="regDialog" tabindex="-1" role="dialog" aria-labelledby="regDialogLabel" ariai-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -17,7 +14,7 @@
           This gift is available at the above link, but an equivalent one can be bought anywhere.
           </p>
           <p>
-          If you wish to mark this gift as taken, please submit your name. This information will be kept private but will make the gift unavailable to other guests.
+          If you wish to mark this gift as taken, please submit your name. This will be kept private but will make the gift unavailable to other guests.
           </p>
           <form>
             <div class="form-group">
@@ -26,8 +23,27 @@
           </form>
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" id="regSubmitBtn">Submit</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal mymodal fade" id="regSuccess" tabindex="-1" role="dialog" aria-labelledby="regSuccessLabel" ariai-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="regSuccessLabel">Success</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Successfully updated.</p>
+          <p>Thank you so much!</p>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
       </div>
       </div>
     </div>
@@ -45,6 +61,7 @@
   <script>
     $(document).ready(function(){
       console.log("Loading registry")
+      $("#regSubmitBtn").click(regSubmitted);
       refreshRegistry();
     });
 
@@ -61,28 +78,60 @@ function refreshRegistry() {
 
 function registryDialog(giftname) {
   var obj = registry[giftname];
+  giftSelected = giftname;  // make global
   $("#regDialogLabel").text(giftname);
   $("#regDialogText").text(obj.text+" "+obj.quantity);
-  console.log(giftname);
-  console.log(obj);
   $("#regDialog").modal("show");
+}
+
+function regSubmitted() {
+  var name= $("#regName").val();
+  if( name=="" || giftSelected=="" ){
+    return;
+  }
+
+  $("#regTable").empty();
+  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
+
+  $("#regDialog").modal("hide");
+/*
+  firebase.database().ref('registry')
+    .child(giftSelected)
+    .child("alloc")
+    .push().set(name)
+    .then( function(snapshot) {
+      $("#regTable").empty();
+   */
+      $("#regSuccess").modal("show");
+  /*
+    }, function(error) {
+      alert("Sorry, something went wrong and your registry submission was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
+    }
+  );
+  */
+  refreshRegistry();
 }
 
 function refreshRegistryElements(snapshot) {
   $("#regTable").empty();
+  giftSelected = "";  // initially no gift is selected
 
   // for all gifts in the registry:
   registry = snapshot.val();
   for( var giftname in registry ){
+    console.log("Loading "+giftname);
     var obj = registry[giftname];
+    var numAlloc = 0;
+    if( obj.counter != 0 ){
+      numAlloc = Object.keys(obj.counter).length;
+    }
     var col = $("<div></div>", {"class":"col-md-4"});
-    var lnk = $('<div></div>', {"class":"regLink", "onclick":"registryDialog('"+giftname+"')"});
-    lnk.append($("<img></img>", {"src":obj.img, "alt":giftname, "style":"width:100%"}));
+    var lnk = $("<div></div>", {"class":"regLink", "onclick":"registryDialog('"+giftname+"')"});
+    lnk.append($("<img></img>", {"class":"regImg", "src":obj.img, "alt":giftname, "style":"width:100%"}));
     lnk.append('<div class="caption"><p>'+obj.text+'</p></div>');
     col.append(lnk);
     $("#regTable").append(col);
   }
-  console.log($("#regTable").html());
 }
   </script>
 </div>
