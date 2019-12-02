@@ -125,6 +125,91 @@ function scrolling(){
     $("#nav").removeClass("underlined");
   }
 }
+
+function refreshRegistry() {
+  $("#regTable").empty();
+  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
+
+  firebase.database().ref('registry').once("value").then(
+    refreshRegistryElements,
+    function(error) {
+      alert("Sorry! something went wrong and the registry did not load\nPlease contact zoepeterwedding2020@gmail.com");
+    });
+}
+
+function registryDialog(giftname) {
+  var obj = registry[giftname];
+  giftSelected = giftname;  // make global
+  $("#regDialogLabel").text(giftname);
+  $("#regDialogText").text(obj.text+" "+obj.quantity);
+  $("#regDialog").modal("show");
+}
+
+function regSubmitted() {
+  var name= $("#regName").val();
+  if( name=="" || giftSelected=="" ){
+    return;
+  }
+
+  $("#regTable").empty();
+  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
+
+  // timestamp
+  var ts = +new Date();
+
+  // Increment counter by pushing to it
+  $("#regDialog").modal("hide");
+  firebase.database().ref('registry')
+    .child(giftSelected).child("counter").push().set(ts)
+    .then( function(snapshot) {
+      console.log("updated gift counter");
+      // Record the name
+      firebase.database().ref('registryNames')
+        .child(giftSelected).push().set({"name":name, "timestamp":ts})
+        .then( function(snapshot) {
+          $("#regSuccess").modal("show");
+          console.log("Successfully posted name to private part of database");
+        }, function(error) {
+          alert("Sorry, something went wrong and your registry submission was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
+        }
+        );
+      refreshRegistry();
+    }, function(error) {
+      alert("Sorry, something went wrong and your registry submission was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
+    }
+  );
+}
+
+function refreshRegistryElements(snapshot) {
+  $("#regTable").empty();
+  giftSelected = "";  // initially no gift is selected
+
+  // for all gifts in the registry:
+  registry = snapshot.val();
+  for( var giftname in registry ){
+    console.log("Loading "+giftname);
+    var obj = registry[giftname];
+    var numAlloc = 0;
+    if( obj.counter ){
+      numAlloc = Object.keys(obj.counter).length;
+    }
+    if( numAlloc < obj.quantity ){
+      var lnkProps = {"class":"regLink", "onclick":"registryDialog('"+giftname+"')"};
+      var lnkText = obj.text+' ('+numAlloc+' of '+obj.quantity+')';
+    }else{
+      var lnkProps = {"class":"regLink"};
+      var lnkText = obj.text+' (unavailable)';
+      //TODO apply some sort of grayed out effect / remove hover effect?
+    }
+    var col = $("<div></div>", {"class":"col-md-4"});
+    var lnk = $("<div></div>", lnkProps);
+    lnk.append($("<img></img>", {"class":"regImg", "src":obj.img, "alt":giftname, "style":"width:100%"}));
+    lnk.append('<div class="caption"><p>'+lnkText+'</p></div>');
+    col.append(lnk);
+    $("#regTable").append(col);
+  }
+}
+
 </script>
 
 </body>

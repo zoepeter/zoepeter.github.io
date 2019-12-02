@@ -1,5 +1,5 @@
 <div>
-  <div class="modal mymodal fade" id="regDialog" tabindex="-1" role="dialog" aria-labelledby="regDialogLabel" ariai-hidden="true">
+  <div class="modal mymodal fade" id="regDialog" data-keyboard="false" role="dialog" aria-labelledby="regDialogLabel" ariai-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -64,74 +64,5 @@
       $("#regSubmitBtn").click(regSubmitted);
       refreshRegistry();
     });
-
-function refreshRegistry() {
-  $("#regTable").empty();
-  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
-
-  firebase.database().ref('registry').once("value").then(
-    refreshRegistryElements,
-    function(error) {
-      alert("Sorry! something went wrong and the registry did not load\nPlease contact zoepeterwedding2020@gmail.com");
-    });
-}
-
-function registryDialog(giftname) {
-  var obj = registry[giftname];
-  giftSelected = giftname;  // make global
-  $("#regDialogLabel").text(giftname);
-  $("#regDialogText").text(obj.text+" "+obj.quantity);
-  $("#regDialog").modal("show");
-}
-
-function regSubmitted() {
-  var name= $("#regName").val();
-  if( name=="" || giftSelected=="" ){
-    return;
-  }
-
-  $("#regTable").empty();
-  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
-
-  $("#regDialog").modal("hide");
-/*
-  firebase.database().ref('registry')
-    .child(giftSelected)
-    .child("alloc")
-    .push().set(name)
-    .then( function(snapshot) {
-      $("#regTable").empty();
-   */
-      $("#regSuccess").modal("show");
-  /*
-    }, function(error) {
-      alert("Sorry, something went wrong and your registry submission was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
-    }
-  );
-  */
-  refreshRegistry();
-}
-
-function refreshRegistryElements(snapshot) {
-  $("#regTable").empty();
-  giftSelected = "";  // initially no gift is selected
-
-  // for all gifts in the registry:
-  registry = snapshot.val();
-  for( var giftname in registry ){
-    console.log("Loading "+giftname);
-    var obj = registry[giftname];
-    var numAlloc = 0;
-    if( obj.counter != 0 ){
-      numAlloc = Object.keys(obj.counter).length;
-    }
-    var col = $("<div></div>", {"class":"col-md-4"});
-    var lnk = $("<div></div>", {"class":"regLink", "onclick":"registryDialog('"+giftname+"')"});
-    lnk.append($("<img></img>", {"class":"regImg", "src":obj.img, "alt":giftname, "style":"width:100%"}));
-    lnk.append('<div class="caption"><p>'+obj.text+'</p></div>');
-    col.append(lnk);
-    $("#regTable").append(col);
-  }
-}
   </script>
 </div>

@@ -79,7 +79,8 @@ function submitRsvp(name) {
     whoElse: $("#rsvpWhoElse").val(),
     busInterest: $("#rsvpBusInterest").val(),
     dietaryReq: $("#rsvpDietary").val(),
-    songSuggestions: $("#rsvpSongs").val()
+    songSuggestions: $("#rsvpSongs").val(),
+    timestamp: +new Date()
   };
 
   var reqList = [];
