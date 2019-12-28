@@ -92,6 +92,17 @@ div.sticky {
     justify-content: center;
 }
 
+.party {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.partyText {
+    text-align: center;
+    width: 160px;
+}
+
 .leaves {
     background-image: url('res/leavesBL.jpg'), url('res/leavesR.jpg');
     background-position: -10% 100%, 100% 20%;

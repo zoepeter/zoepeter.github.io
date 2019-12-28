@@ -1,0 +1,19 @@
+ - subheading font
+ - wedding map
+    - parking
+ - wedding schedule 
+    - 10min walk
+    - 
+ - leaves on phone?
+ - footer
+ - cards for the wedding and getting there
+ - no title for wedding page
+ - registry
+    - cost on caption
+    - tidy up dialog - text from database?
+    - gray out items which are unavailable. Overlay the unavailable text.
+ - getting there: planning on organising --> considering organising
+ - button theme color to eucalyptus green
+ - tweak circle photo size for screen size
+ - tweak links for mobile
+ - test on all browsers and mobiles
