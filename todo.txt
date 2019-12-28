@@ -5,9 +5,9 @@
     - 10min walk
     - 
  - leaves on phone?
- - footer
+ + footer
  - cards for the wedding and getting there
- - no title for wedding page
+ + no title for wedding page
  - registry
     - cost on caption
     - tidy up dialog - text from database?
