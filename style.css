@@ -46,6 +46,16 @@ div.sticky {
     font-weight: 400;
 }
 
+.expand-to-footer {
+    min-height: calc(100vh - 180px);
+}
+
+.footer {
+    text-align: center;
+    font-size: 8pt;
+    height: 40px;
+}
+
 .mytitle {
     font-family: 'Sacramento', cursive;
     font-size: 77px;
