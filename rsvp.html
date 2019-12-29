@@ -154,7 +154,7 @@ function windowInit(name){
 
 function resizing(){
   var w = $(window).width();
-  if( w > 600 ){
+  if( w > 1000 ){
     var rhide = 0;
     var lhide = 0;
     if( w < 1300 ){
@@ -163,11 +163,11 @@ function resizing(){
     if( w < 900 ){
       lhide = 900-w;
     }
-    $("#mybody").addClass("leaves")
+    $("body").addClass("leaves")
       .css('background-position',
         (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
   }else{
-    $("#mybody").removeClass("leaves");
+    $("body").removeClass("leaves");
   }
 }
 
