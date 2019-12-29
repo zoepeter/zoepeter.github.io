@@ -31,26 +31,26 @@
 <body>
 <!-- header.html -->
 <div>
-    <h1 class="mytitle">Zoe & Peter</h1>
-    <p class="mysubtitle">29 March 2020</p>
+  <h1 class="mytitle">Zoe & Peter</h1>
+  <p class="mysubtitle">29 March 2020</p>
 </div>
 
 <div class="sticky">
-    <nav id="nav" class="navbar navbar-light navbar-expand flex-column">
-        <ul class="navbar-nav flex-row">
-            <li class="nav-item mynav"><a class="nav-link" href="index.html" id="home">Home</a></li>
-            <li class="nav-item mynav"><a class="nav-link" href="wedding.html" id="wedding">The Wedding</a></li>
-            <li class="nav-item mynav"><a class="nav-link" href="getting.html" id="getting">Getting There</a></li>
-            <li class="nav-item mynav"><a class="nav-link" href="registry.html" id="registry">Registry</a></li>
-            <li class="nav-item mynav"><a class="nav-link" href="rsvp.html" id="rsvp">RSVP</a></li>
-        </ul>
-    </nav>
+  <div id="nav">
+    <div id="navspread">
+      <div class="mynav"><a class="mynavlink" href="index.html" id="home">Home</a></div>
+      <div class="mynav"><a class="mynavlink" href="wedding.html" id="wedding">The Wedding</a></div>
+      <div class="mynav"><a class="mynavlink" href="getting.html" id="getting">Getting There</a></div>
+      <div class="mynav"><a class="mynavlink" href="registry.html" id="registry">Registry</a></div>
+      <div class="mynav"><a class="mynavlink" href="rsvp.html" id="rsvp">RSVP</a></div>
+    </div>
+  </div>
 </div>
 
 <!-- note: div is ended in footer.html -->
 <div id="content" class="container-fluid expand-to-footer">
 
-<!-- end header.html -->
+  <!-- end header.html -->
 
 <div>
   <h3>Directions</h3>
@@ -107,7 +107,8 @@ function windowInit(name){
   $(window).resize(resizing);
 
   // Highlight current nav link
-  $("#"+name).addClass("active")
+  $("#"+name).removeClass("mynavlink")
+  $("#"+name).addClass("disabled-link")
 
   // Must call initially:
   resizing();

@@ -42,9 +42,64 @@ div.sticky {
     padding-right: 50px;
 }
 
+#nav {
+  display: flex;
+  justify-content: center;
+}
+
+#navspread {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 500px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .mynav {
     font-weight: 400;
+    padding: 2px;
 }
+
+.mynav {
+  text-align: center;
+}
+
+.mynavlink:link {
+  color: gray;
+  text-decoration: none;
+}
+
+.mynavlink:visited {
+  color: gray;
+  text-decoration: none;
+}
+
+.mynavlink:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.mynavlink:active {
+  color: black;
+  text-decoration: none;
+}
+
+.disabled-link {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
+
+@media screen and (max-width: 400px) {
+    .navspread{
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+} 
 
 .expand-to-footer {
     min-height: calc(100vh - 250px);
@@ -83,12 +138,6 @@ div.sticky {
     opacity: 0.7;
 }
 
-@media screen and (max-width: 500px) {
-    .mynav {
-        font-size: 3vw;
-    }
-} 
-
 .collapsing {
     transition: none;
 }
@@ -97,17 +146,23 @@ div.sticky {
     padding-bottom: 60px;
 }
 
-.imgOfUs {
+#imgED {
     max-width: 100%;
     max-height: 100%;
     display: flex;
     justify-content: center;
 }
 
-#imgEngaged {
+#imgE {
     display: block;
-    max-width: 500px;
+    width: 500px;
     height: auto;
+}
+
+@media screen and (max-width: 500px) {
+  #imgE {
+    width:95vw;
+  }
 }
 
 .party {

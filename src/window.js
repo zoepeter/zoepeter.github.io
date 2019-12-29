@@ -6,7 +6,8 @@ function windowInit(name){
   $(window).resize(resizing);
 
   // Highlight current nav link
-  $("#"+name).addClass("active")
+  $("#"+name).removeClass("mynavlink")
+  $("#"+name).addClass("disabled-link")
 
   // Must call initially:
   resizing();
