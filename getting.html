@@ -1,27 +1,149 @@
+<html lang="en">
+<!-- head.html -->
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex,nofollow">
+
+<head>
+    <title>Zoe and Peter's Wedding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                           crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<!-- end head.html -->
+
+<body>
+<!-- header.html -->
+<div>
+    <h1 class="mytitle">Zoe & Peter</h1>
+    <p class="mysubtitle">29 March 2020</p>
+</div>
+
+<div class="sticky">
+    <nav id="nav" class="navbar navbar-light navbar-expand flex-column">
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item mynav"><a class="nav-link" href="index.html" id="home">Home</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="wedding.html" id="wedding">The Wedding</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="getting.html" id="getting">Getting There</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="registry.html" id="registry">Registry</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="rsvp.html" id="rsvp">RSVP</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- note: div is ended in footer.html -->
+<div id="content" class="container-fluid expand-to-footer">
+
+<!-- end header.html -->
+
 <div>
   <h3>Directions</h3>
+  <p>Please arrive at Burbrook Forest, 855 Brookman Rd, Kuitpo, by 3:15pm for a 3:30 start.</p>
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13035.004644571838!2d138.66994502658835!3d-35.237564001903806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab12b0d9d87f5fd%3A0x2135e4008c4b448d!2sBurbrook%20Forest%20(private%20property)!5e0!3m2!1sen!2sau!4v1575365037008!5m2!1sen!2sau" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-<br></br>
-<h3> Shuttle Bus Information </h3>
-<p>
-We are planning on organising a bus to guests. If you are interested in taking the bus please let us know on your RSVP. If you register your interest, we will contact you when we have more information.
-</p>
-<p>
-The bus will pick you up from a central location (e.g., the city) at around 2:15pm and take you to the ceremony (Burbrook Forest). The bus will also shuttle you between the ceremony and the reception. The bus will leave from the reception (Kuitpo Hall) at 11:30pm.
-</p>
+  <br></br>
+  <h3> Shuttle Bus Information </h3>
+  <p>
+  If we get enough interest, we will organise a bus to ferry guests from a central location (probably the CBD) to the venue and back.
+  The bus will depart from the venue around 11:30pm to return to the pick-up point.
+  </p>
+  <p>
+  If you are interested in taking the bus please let us know via the <a href="rsvp.html">RSVP form</a>.
+  If you register your interest, we will contact you when we have more information.
+  </p>
 
-<h3>Parking</h3> 
-<p>
-There is parking at both the ceremony and reception venues. Please see <a href="#wedding">The Wedding</a> for a map outlining parking locations.
+  <h3>Parking</h3>
+  <p>
+  There is parking at both the ceremony and reception venues. Please see <a href="wedding.html">The Wedding</a> for a map outlining parking locations.
 
-</p>
-<p>
-Cars can be left overnight at the parking lot opposite Kuitpo Hall.
-</p>
+  </p>
+  <p>
+  Cars can be left overnight at the parking lot opposite Kuitpo Hall.
+  </p>
 
-<h3>Taxis</h3>
-<p>
-Taxis and Ubers do not regularly service Kuitpo. If you would like a taxi it will need to be pre-booked.
-</p>
+  <h3>Taxis</h3>
+  <p>
+  Taxis and Ubers do not regularly service Kuitpo. If you would like a taxi it will need to be pre-booked.
+  </p>
 
 </div>
+
+<div class="spacious"></div>
+
+<!-- footer.html -->
+
+<!-- end div from header.html -->
+</div>
+
+<div class="footer">Website designed and developed by Peter Anastasiou 2020</div>
+
+<!-- end footer.html -->
+
+<script>
+  $(document).ready(function(){
+    windowInit("getting");
+  });
+
+// window.js
+
+function windowInit(name){
+  // Window Event handlers
+  window.onscroll = scrolling;
+  $(window).resize(resizing);
+
+  // Highlight current nav link
+  $("#"+name).addClass("active")
+
+  // Must call initially:
+  resizing();
+}
+
+function resizing(){
+  var w = $(window).width();
+  if( w > 600 ){
+    var rhide = 0;
+    var lhide = 0;
+    if( w < 1300 ){
+      rhide = 1300-w;
+    }
+    if( w < 900 ){
+      lhide = 900-w;
+    }
+    $("#mybody").addClass("leaves")
+      .css('background-position',
+        (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
+  }else{
+    $("#mybody").removeClass("leaves");
+  }
+}
+
+function scrolling(){
+  // if scrolled past the sticky bit, give it an underline
+  if($(".sticky").offset().top <= window.pageYOffset){
+    $("#nav").addClass("underlined");
+  }else{
+    $("#nav").removeClass("underlined");
+  }
+}
+
+// end window.js
+
+</script>
+
+</body>
+</html>

@@ -1,15 +1,69 @@
+<html lang="en">
+<!-- head.html -->
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex,nofollow">
+
+<head>
+    <title>Zoe and Peter's Wedding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                           crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<!-- end head.html -->
+
+<body>
+<!-- header.html -->
+<div>
+    <h1 class="mytitle">Zoe & Peter</h1>
+    <p class="mysubtitle">29 March 2020</p>
+</div>
+
+<div class="sticky">
+    <nav id="nav" class="navbar navbar-light navbar-expand flex-column">
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item mynav"><a class="nav-link" href="index.html" id="home">Home</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="wedding.html" id="wedding">The Wedding</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="getting.html" id="getting">Getting There</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="registry.html" id="registry">Registry</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="rsvp.html" id="rsvp">RSVP</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- note: div is ended in footer.html -->
+<div id="content" class="container-fluid expand-to-footer">
+
+<!-- end header.html -->
+
 <div>
   <h3>Dress Code</h3>
   <p>
-    The ceremony and reception will be held outdoors on grass. We encourage you to bring something to keep you warm and recommend against wearing stilettos. 
+  The ceremony and reception will be held outdoors on grass. We encourage you to bring something to keep you warm and recommend against wearing stilettos.
   </p>
 
   <h3>Facilities</h3>
   <p>
-Please note that there are no toilets at Burbrook Forest. Toilets are available at Kuitpo Hall, which you can use before or after the ceremony.
+  Please note that there are no toilets at Burbrook Forest. Toilets are available at Kuitpo Hall, which you can use before or after the ceremony.
   </p>
   <p>
-No smoking in the forest please.
+  No smoking in the forest please.
   </p>
 
   <h3>Unplugged Ceremony</h3>
@@ -24,25 +78,25 @@ No smoking in the forest please.
       <tr><td class="partyText"><b>Kate</b></td></tr>
       <tr><td class="partyText">Maid of Honour</td></tr>
       <tr><td class="partyText">Sister</td></tr>
-    </table> 
+    </table>
     <table>
       <tr><td><img src="res/ckim.jpg" width="160px"></img></td></tr>
       <tr><td class="partyText"><b>Kim</b></td></tr>
       <tr><td class="partyText">Bridesmaid</td></tr>
       <tr><td class="partyText">Sister-in-law</td></tr>
-    </table> 
+    </table>
     <table>
       <tr><td><img src="res/cbek.jpg" width="160px"></img></td></tr>
       <tr><td class="partyText"><b>Bek</b></td></tr>
       <tr><td class="partyText">Bridesmaid</td></tr>
       <tr><td class="partyText">Friends since primary school</td></tr>
-    </table> 
+    </table>
     <table>
       <tr><td><img src="res/ckath.jpg" width="160px"></img></td></tr>
       <tr><td class="partyText"><b>Kathryn</b></td></tr>
       <tr><td class="partyText">Bridesmaid</td></tr>
       <tr><td class="partyText">Friends since high school</td></tr>
-    </table> 
+    </table>
   </div>
   <br></br>
   <div class="party">
@@ -51,27 +105,89 @@ No smoking in the forest please.
       <tr><td class="partyText"><b>John</b></td></tr>
       <tr><td class="partyText">Best Man</td></tr>
       <tr><td class="partyText">Friends since high school</td></tr>
-    </table> 
+    </table>
     <table>
       <tr><td><img src="res/cpat.jpg" width="160px"></img></td></tr>
       <tr><td class="partyText"><b>Patrick</b></td></tr>
       <tr><td class="partyText">Groomsman</td></tr>
       <tr><td class="partyText">Friends since Uni</td></tr>
-    </table> 
+    </table>
     <table>
       <tr><td><img src="res/cthomas.jpg" width="160px"></img></td></tr>
       <tr><td class="partyText"><b>Thomas</b></td></tr>
       <tr><td class="partyText">Groomsman</td></tr>
       <tr><td class="partyText">Friends since Uni</td></tr>
-    </table> 
+    </table>
     <table>
       <tr><td><img src="res/cgeorge.jpg" width="160px"></img></td></tr>
       <tr><td class="partyText"><b>George</b></td></tr>
       <tr><td class="partyText">Groomsman</td></tr>
       <tr><td class="partyText">Friends since Uni</td></tr>
-    </table> 
-  </div> 
+    </table>
+  </div>
 
   <p class="spacious"></p>
 </div>
 
+<!-- footer.html -->
+
+<!-- end div from header.html -->
+</div>
+
+<div class="footer">Website designed and developed by Peter Anastasiou 2020</div>
+
+<!-- end footer.html -->
+
+<script>
+  $(document).ready(function(){
+    windowInit("wedding");
+  });
+
+// window.js
+
+function windowInit(name){
+  // Window Event handlers
+  window.onscroll = scrolling;
+  $(window).resize(resizing);
+
+  // Highlight current nav link
+  $("#"+name).addClass("active")
+
+  // Must call initially:
+  resizing();
+}
+
+function resizing(){
+  var w = $(window).width();
+  if( w > 600 ){
+    var rhide = 0;
+    var lhide = 0;
+    if( w < 1300 ){
+      rhide = 1300-w;
+    }
+    if( w < 900 ){
+      lhide = 900-w;
+    }
+    $("#mybody").addClass("leaves")
+      .css('background-position',
+        (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
+  }else{
+    $("#mybody").removeClass("leaves");
+  }
+}
+
+function scrolling(){
+  // if scrolled past the sticky bit, give it an underline
+  if($(".sticky").offset().top <= window.pageYOffset){
+    $("#nav").addClass("underlined");
+  }else{
+    $("#nav").removeClass("underlined");
+  }
+}
+
+// end window.js
+
+</script>
+
+</body>
+</html>

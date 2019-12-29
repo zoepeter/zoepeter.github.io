@@ -1,0 +1,122 @@
+
+body {
+    font-family:'Lato', sans-serif;
+    font-weight: 300;
+}
+
+h2 {
+    /*font-family: 'Sacramento', cursive;*/
+}
+
+.mymodal {
+    margin-top: 40px;
+}
+
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index:1;
+    background: white;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 750px;
+}
+
+.underlined {
+    border-bottom: 1px;
+    border-color: lightgray;
+    border-bottom-style:solid;
+}
+
+.myspinner {
+    margin-left: 20px;
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 800px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.mynav {
+    font-weight: 400;
+}
+
+.expand-to-footer {
+    min-height: calc(100vh - 180px);
+}
+
+.footer {
+    text-align: center;
+    font-size: 8pt;
+    height: 40px;
+}
+
+.mytitle {
+    font-family: 'Sacramento', cursive;
+    font-size: 77px;
+    text-align: center;
+    line-height: 1.0;
+    padding-top: 40px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.mysubtitle {
+    text-align: center;
+    margin: 0px;
+}
+
+.regLink {
+    cursor:pointer;
+}
+
+.regImg {
+    opacity: 1;
+}
+
+.regLink:hover .regImg {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 500px) {
+    .mynav {
+        font-size: 3vw;
+    }
+} 
+
+.collapsing {
+    transition: none;
+}
+
+.spacious {
+    padding-bottom: 80px;
+}
+
+.imgOfUs {
+    display: flex;
+    justify-content: center;
+}
+
+.party {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.partyText {
+    text-align: center;
+    width: 160px;
+}
+
+.leaves {
+    background-image: url('res/leavesBL.jpg'), url('res/leavesR.jpg');
+    background-position: -10% 100%, 100% 20%;
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, no-repeat;
+}
+

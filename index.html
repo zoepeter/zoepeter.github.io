@@ -1,103 +1,88 @@
-<!DOCTYPE html>
 <html lang="en">
+<!-- head.html -->
 <meta charset="utf-8"/>
 <meta name="robots" content="noindex,nofollow">
 
 <head>
-<title>Zoe and Peter's Wedding</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zoe and Peter's Wedding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-											 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-                       crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-				integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
-      crossorigin="anonymous"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
-<link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                           crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
 </head>
+<!-- end head.html -->
 
-<body id="mybody">
-
-<div class="mytop">
-  <h1 class="mytitle">Zoe & Peter</h1>
-  <p class="mysubtitle">29 March 2020</p>
+<body>
+<!-- header.html -->
+<div>
+    <h1 class="mytitle">Zoe & Peter</h1>
+    <p class="mysubtitle">29 March 2020</p>
 </div>
 
 <div class="sticky">
-  <nav id="nav" class="navbar navbar-light navbar-expand flex-column">
-    <ul class="navbar-nav flex-row">
-      <li class="nav-item mynav"><a class="nav-link" href="#home" id="home">Home</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#wedding" id="wedding">The Wedding</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#getting" id="getting">Getting There</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#registry" id="registry">Registry</a></li>
-      <li class="nav-item mynav"><a class="nav-link" href="#rsvp" id="rsvp">RSVP</a></li>
-    </ul>
-  </nav>
+    <nav id="nav" class="navbar navbar-light navbar-expand flex-column">
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item mynav"><a class="nav-link" href="index.html" id="home">Home</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="wedding.html" id="wedding">The Wedding</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="getting.html" id="getting">Getting There</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="registry.html" id="registry">Registry</a></li>
+            <li class="nav-item mynav"><a class="nav-link" href="rsvp.html" id="rsvp">RSVP</a></li>
+        </ul>
+    </nav>
 </div>
 
+<!-- note: div is ended in footer.html -->
 <div id="content" class="container-fluid expand-to-footer">
+
+<!-- end header.html -->
+
+<div class="imgOfUs">
+  <img src="res/circle500.jpg">
+  </img>
 </div>
 
-<div class="footer">Website developed by Peter Anastasiou 2020</div>
+<!-- footer.html -->
+
+<!-- end div from header.html -->
+</div>
+
+<div class="footer">Website designed and developed by Peter Anastasiou 2020</div>
+
+<!-- end footer.html -->
 
 <script>
   $(document).ready(function(){
-    // Window Event handlers
-    window.onscroll = scrolling;
-    $(window).resize(resizing);
-    $(window).bind("hashchange", reload_page);
-
-    // Initialize Firebase
-    var firebaseConfig = {
-      apiKey: "AIzaSyCPdEtSwodTo2Kg1LJk06bSmtGeIH1zyLk",
-      authDomain: "zoepeter-fab29.firebaseapp.com",
-      databaseURL: "https://zoepeter-fab29.firebaseio.com",
-      projectId: "zoepeter-fab29",
-      storageBucket: "zoepeter-fab29.appspot.com",
-      messagingSenderId: "21329665131",
-      appId: "1:21329665131:web:84d6180895af345140652e",
-      measurementId: "G-5SP8B0650R"
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-
-    // Must call initially:
-    reload_page();
-    resizing();
+    windowInit("home");
   });
 
-function reload_page(){
-  var hash = window.location.hash;
-  if( hash ){
-    console.log("load "+hash);
-    load_page_(hash.substring(1));
-  }else{
-    load_page_("home");
-  }
-}
+// window.js
 
-function load_page_(name){
-  // Scroll to top
-  document.body.scrollTop = 0;// For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  // Remove active highlight from all nav links
-  $(".nav-link").removeClass("active")
-  // Load in content from same named html
-  $("#content").load(name+".html", function() {
-    // Highlight current nav link
-    $("#"+name).addClass("active")
-  });
+function windowInit(name){
+  // Window Event handlers
+  window.onscroll = scrolling;
+  $(window).resize(resizing);
+
+  // Highlight current nav link
+  $("#"+name).addClass("active")
+
+  // Must call initially:
+  resizing();
 }
 
 function resizing(){
@@ -128,92 +113,9 @@ function scrolling(){
   }
 }
 
-function refreshRegistry() {
-  $("#regTable").empty();
-  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
-
-  firebase.database().ref('registry').once("value").then(
-    refreshRegistryElements,
-    function(error) {
-      alert("Sorry! something went wrong and the registry did not load\nPlease contact zoepeterwedding2020@gmail.com");
-    });
-}
-
-function registryDialog(giftname) {
-  var obj = registry[giftname];
-  giftSelected = giftname;  // make global
-  $("#regDialogLabel").text(giftname);
-  $("#regDialogText").text(obj.text+" "+obj.quantity);
-  $("#regDialog").modal("show");
-}
-
-function regSubmitted() {
-  var name= $("#regName").val();
-  if( name=="" || giftSelected=="" ){
-    return;
-  }
-
-  $("#regTable").empty();
-  $("#regTable").append('<div class="spinner-border myspinner" role="status"></div>');
-
-  // timestamp
-  var ts = +new Date();
-
-  // Increment counter by pushing to it
-  $("#regDialog").modal("hide");
-  firebase.database().ref('registry')
-    .child(giftSelected).child("counter").push().set(ts)
-    .then( function(snapshot) {
-      console.log("updated gift counter");
-      // Record the name
-      firebase.database().ref('registryNames')
-        .child(giftSelected).push().set({"name":name, "timestamp":ts})
-        .then( function(snapshot) {
-          $("#regSuccess").modal("show");
-          console.log("Successfully posted name to private part of database");
-        }, function(error) {
-          alert("Sorry, something went wrong and your registry submission was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
-        }
-        );
-      refreshRegistry();
-    }, function(error) {
-      alert("Sorry, something went wrong and your registry submission was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
-    }
-  );
-}
-
-function refreshRegistryElements(snapshot) {
-  $("#regTable").empty();
-  giftSelected = "";  // initially no gift is selected
-
-  // for all gifts in the registry:
-  registry = snapshot.val();
-  for( var giftname in registry ){
-    console.log("Loading "+giftname);
-    var obj = registry[giftname];
-    var numAlloc = 0;
-    if( obj.counter ){
-      numAlloc = Object.keys(obj.counter).length;
-    }
-    if( numAlloc < obj.quantity ){
-      var lnkProps = {"class":"regLink", "onclick":"registryDialog('"+giftname+"')"};
-      var lnkText = obj.text+' ('+numAlloc+' of '+obj.quantity+')';
-    }else{
-      var lnkProps = {"class":"regLink"};
-      var lnkText = obj.text+' (unavailable)';
-      //TODO apply some sort of grayed out effect / remove hover effect?
-    }
-    var col = $("<div></div>", {"class":"col-md-4"});
-    var lnk = $("<div></div>", lnkProps);
-    lnk.append($("<img></img>", {"class":"regImg", "src":obj.img, "alt":giftname, "style":"width:100%"}));
-    lnk.append('<div class="caption"><p>'+lnkText+'</p></div>');
-    col.append(lnk);
-    $("#regTable").append(col);
-  }
-}
+// end window.js
 
 </script>
 
 </body>
 </html>
-
