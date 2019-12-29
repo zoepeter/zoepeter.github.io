@@ -104,6 +104,12 @@ div.sticky {
     justify-content: center;
 }
 
+#imgEngaged {
+    display: block;
+    max-width: 500px;
+    height: auto;
+}
+
 .party {
     display: flex;
     flex-wrap: wrap;
