@@ -107,7 +107,7 @@
 
   <h2>Registry</h2>
   <p>
-  Your presence is the greatest present we could ask for. However, if you really want to grace us with a gift, we have picked out a few suggestions.
+  Your presence is the only present we could ask for. However, if you really want to grace us with a gift, we have picked out a few suggestions.
   </p>
 
   <div class="row spacious" id="regTable">
@@ -225,6 +225,7 @@ function firebaseInit() {
     if( obj.explId==1 ){
       $("#regExplanation").text(
         "This gift is available at the above link, but an equivalent one can be bought elsewhere.");
+
     }else{
       $("#regExplanation").text("explain#"+obj.explId);
     }
@@ -324,7 +325,7 @@ function firebaseInit() {
 
       var col = $("<div></div>", {"class":"col-md-4"});
       var lnk = $("<div></div>", lnkProps);
-      lnk.append($("<img></img>", {"class":imgClass, "src":obj.img, "alt":giftid, "style":"width:100%"}));
+      lnk.append($("<img></img>", {"class":imgClass, "src":obj.img, "alt":giftid}));
       lnk.append('<div class="caption"><p>'+lnkText+'<br>'+avText+'</p></div>');
       col.append(lnk);
       $("#regTable").append(col);

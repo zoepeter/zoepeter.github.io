@@ -108,6 +108,7 @@
     if( obj.explId==1 ){
       $("#regExplanation").text(
         "This gift is available at the above link, but an equivalent one can be bought elsewhere.");
+
     }else{
       $("#regExplanation").text("explain#"+obj.explId);
     }
@@ -207,7 +208,7 @@
 
       var col = $("<div></div>", {"class":"col-md-4"});
       var lnk = $("<div></div>", lnkProps);
-      lnk.append($("<img></img>", {"class":imgClass, "src":obj.img, "alt":giftid, "style":"width:100%"}));
+      lnk.append($("<img></img>", {"class":imgClass, "src":obj.img, "alt":giftid}));
       lnk.append('<div class="caption"><p>'+lnkText+'<br>'+avText+'</p></div>');
       col.append(lnk);
       $("#regTable").append(col);
