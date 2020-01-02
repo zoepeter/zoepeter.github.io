@@ -99,11 +99,11 @@
     giftSelected = giftid;  // make global
     $("#regDialogLabel").text(obj.title);
     $("#regDialogText").text(obj.text);
-    $("#regPurchaseLink").html('<a style="text-decoration:underlined" href="'+obj.link+'">'+obj.title+'</a>');
+    $("#regPurchaseLink").html('<a style="text-decoration:underlined" target="_blank" href="'+obj.link+'">'+obj.title+' - $'+obj.price+'</a>');
 
     if( obj.explId==1 ){
       $("#regExplanation").text(
-        "This gift is available at the above link, but an equivalent one can be bought anywhere.");
+        "This gift is available at the above link, but an equivalent one can be bought elsewhere.");
     }else{
       $("#regExplanation").text("explain#"+obj.explId);
     }
@@ -185,22 +185,24 @@
         var lnkProps = {"class":"regLink", "onclick":"registryDialog('"+giftid+"')"};
         if( obj.quantity < 0 ){
           // Unlimited
-          var lnkText = obj["title"];
+          var lnkText = obj.title;
+          var avText = "";
         }else{
           // Limited
-          var lnkText = obj["title"]+' ('+obj.counter+' of '+obj.quantity+')';
+          var lnkText = obj.title+" - $"+obj.price;
+          var avText = "("+(obj.quantity-obj.counter)+" of "+obj.quantity+" available)";
         }
       }else{
         var lnkProps = {"class":"regLink"};
-        var lnkText = obj["title"]+' (unavailable)';
-
+        var lnkText = obj.title;
+        var avText = "Unavailable";
         //TODO apply some sort of grayed out effect / remove hover effect?
       }
 
       var col = $("<div></div>", {"class":"col-md-4"});
       var lnk = $("<div></div>", lnkProps);
       lnk.append($("<img></img>", {"class":"regImg", "src":obj.img, "alt":giftid, "style":"width:100%"}));
-      lnk.append('<div class="caption"><p>'+lnkText+'</p></div>');
+      lnk.append('<div class="caption"><p>'+lnkText+'<br>'+avText+'</p></div>');
       col.append(lnk);
       $("#regTable").append(col);
     }
