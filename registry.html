@@ -242,10 +242,10 @@ function firebaseInit() {
 
   function regSubmitted() {
     var name= $("#regName").val();
-    var qty = $("#regQtySelected").val() || 0;
+    var qty = parseInt($("#regQtySelected").val());
     console.log(qty);
-    if( name=="" || giftSelected==""
-        || qty < 1 || qty > registry[giftSelected].numLeft ){
+    if( name=="" || giftSelected=="" || qty < 1
+      || (qty > registry[giftSelected].numLeft && registry[giftSelected].quantity > 0) ){
       alert("Invalid input");
       return;
     }
@@ -258,13 +258,21 @@ function firebaseInit() {
 
     // Increment counter by pushing to it
     $("#regDialog").modal("hide");
-    firebase.database().ref('registry')
-      .child(giftSelected).child("counter").push().set(ts)
-      .then( function(snapshot) {
+    firebase.database().ref('registry').child(giftSelected).child("counter")
+      .transaction(function (currentValue) {
+        // try to increment the counter, firebase rules will restrict the value
+        return currentValue + qty;
+      }, function(err, success, snapshot) {
+        // Callback for the transaction
+        if(err || !success) {
+          alert("Looks like someone beat you to it at the last second!\nIf you think something went wrong, contact zoepeterwedding2020@gmail.com");
+          return;
+        }
+        // Counter successfully updated
         console.log("updated gift counter");
         // Record the name
-        firebase.database().ref('registryNames')
-          .child(giftSelected).push().set({"name":name, "timestamp":ts})
+        firebase.database().ref('registryNames').child(giftSelected).push()
+          .set({"name":name, "timestamp":ts})
           .then( function(snapshot) {
             $("#regSuccess").modal("show");
             console.log("Successfully posted name to private part of database");
@@ -272,11 +280,9 @@ function firebaseInit() {
             alert("Sorry, something went wrong and your registry submission was not accepted!\nTry again or contact zoepeterwedding2020@gmail.com");
           }
           );
+        console.log("updated gift records")
         refreshRegistry();
-      }, function(error) {
-        alert("Sorry, something went wrong and your registry submission was not accepted!\nTry again or contact zoepeterwedding2020@gmail.com");
-      }
-      );
+      });
   }
 
   function refreshRegistryElements(snapshot) {
@@ -290,20 +296,21 @@ function firebaseInit() {
       var obj = registry[giftid];
 
       // Check num available
-      var numAlloc = 0;
-      if( obj.counter ){
-        numAlloc = Object.keys(obj.counter).length;
-      }
+      registry[giftid].numLeft = obj.quantity - obj.counter;
 
-      registry[giftid].numLeft = obj.quantity - numAlloc;
-
-      var available = registry[giftid].numLeft > 0 || obj.quantity < 0;
-      if( available ){
+      if( registry[giftid].numLeft > 0 || obj.quantity < 0 ){
         var lnkProps = {"class":"regLink", "onclick":"registryDialog('"+giftid+"')"};
-        var lnkText = obj["title"]+' ('+numAlloc+' of '+obj.quantity+')';
+        if( obj.quantity < 0 ){
+          // Unlimited
+          var lnkText = obj["title"];
+        }else{
+          // Limited
+          var lnkText = obj["title"]+' ('+obj.counter+' of '+obj.quantity+')';
+        }
       }else{
         var lnkProps = {"class":"regLink"};
         var lnkText = obj["title"]+' (unavailable)';
+
         //TODO apply some sort of grayed out effect / remove hover effect?
       }
 
