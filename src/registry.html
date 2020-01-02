@@ -59,7 +59,7 @@
 
   <h2>Registry</h2>
   <p>
-  Your presence is the greatest present we could ask for. However, if you really want to grace us with a gift, we have picked out a few suggestions.
+  Your presence is the only present we could ask for. However, if you really want to grace us with a gift, we have picked out a few suggestions.
   </p>
 
   <div class="row spacious" id="regTable">
@@ -99,7 +99,11 @@
     giftSelected = giftid;  // make global
     $("#regDialogLabel").text(obj.title);
     $("#regDialogText").text(obj.text);
-    $("#regPurchaseLink").html('<a style="text-decoration:underlined" target="_blank" href="'+obj.link+'">'+obj.title+' - $'+obj.price+'</a>');
+    var linkText = obj.link+'">'+obj.title;
+    if( obj.price > 0 ){
+      linkText += ' - $'+obj.price;
+    }
+    $("#regPurchaseLink").html('<a style="text-decoration:underlined" target="_blank" href="'+linkText+'</a>');
 
     if( obj.explId==1 ){
       $("#regExplanation").text(
@@ -183,6 +187,7 @@
 
       if( registry[giftid].numLeft > 0 || obj.quantity < 0 ){
         var lnkProps = {"class":"regLink", "onclick":"registryDialog('"+giftid+"')"};
+        var imgClass = "regImg";
         if( obj.quantity < 0 ){
           // Unlimited
           var lnkText = obj.title;
@@ -193,15 +198,16 @@
           var avText = "("+(obj.quantity-obj.counter)+" of "+obj.quantity+" available)";
         }
       }else{
-        var lnkProps = {"class":"regLink"};
+        var lnkProps = {};
         var lnkText = obj.title;
         var avText = "Unavailable";
+        var imgClass = "regUnavailableImg";
         //TODO apply some sort of grayed out effect / remove hover effect?
       }
 
       var col = $("<div></div>", {"class":"col-md-4"});
       var lnk = $("<div></div>", lnkProps);
-      lnk.append($("<img></img>", {"class":"regImg", "src":obj.img, "alt":giftid, "style":"width:100%"}));
+      lnk.append($("<img></img>", {"class":imgClass, "src":obj.img, "alt":giftid, "style":"width:100%"}));
       lnk.append('<div class="caption"><p>'+lnkText+'<br>'+avText+'</p></div>');
       col.append(lnk);
       $("#regTable").append(col);

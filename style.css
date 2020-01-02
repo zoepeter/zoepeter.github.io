@@ -122,6 +122,7 @@ div.sticky {
 }
 
 .caption {
+  text-align: center;
 }
 
 .mysubtitle {
@@ -135,6 +136,10 @@ div.sticky {
 
 .regImg {
     opacity: 1;
+}
+
+.regUnavailableImg {
+  opacity: 0.7;
 }
 
 .regLink:hover .regImg {
