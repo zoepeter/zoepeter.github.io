@@ -135,8 +135,11 @@ div.sticky {
 }
 
 .regImg {
-    width: 100%; 
-    height: 230px;
+    width: 200px; 
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
     object-fit: cover;
     opacity: 1;
 }
@@ -144,6 +147,9 @@ div.sticky {
 .regUnavailableImg {
     width: 100%; 
     height: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
     object-fit: cover;
     opacity: 0.3;
 }
