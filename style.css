@@ -111,16 +111,6 @@ div.sticky {
     height: 40px;
 }
 
-.mytitle {
-    font-family: 'Sacramento', cursive;
-    font-size: 77px;
-    text-align: center;
-    line-height: 1.0;
-    padding-top: 40px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-}
-
 .caption {
   text-align: center;
 }
@@ -196,10 +186,42 @@ div.sticky {
     width: 160px;
 }
 
-body {
-    background-image: url('res/leavesT.jpg'), url('res/leavesBL.jpg'), url('res/leavesR.jpg');
-    background-position: center top, -10% 100%, 100% 20%;
-    background-attachment: fixed, fixed, fixed;
-    background-repeat: no-repeat, no-repeat, no-repeat;
+.mytitle {
+    font-family: 'Sacramento', cursive;
+    font-size: 77px;
+    text-align: center;
+    line-height: 1.0;
+    padding-top: 40px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
 
+@media screen and (max-width: 700px) {
+  .mytitle {
+    font-size: 12vw;
+  }
+}
+
+body {
+    background-image: url('res/leavesT.jpg'), url('res/leavesBL.jpg'), url('res/leavesR.jpg');
+    background-position: center 0%, -10% 100%, 100% 20%;
+    background-attachment: fixed, fixed, fixed;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+	background-size: auto;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    background-size: 100vw;
+  }
+}
+
+h3 {
+  font-size: 2em;
+}
+
+@media screen and (max-width: 700px) {
+  h3 {
+    font-size: 18pt;
+  }
+}
