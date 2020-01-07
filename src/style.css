@@ -196,10 +196,10 @@ div.sticky {
     width: 160px;
 }
 
-.leaves {
-    background-image: url('res/leavesBL.jpg'), url('res/leavesR.jpg');
-    background-position: -10% 100%, 100% 20%;
-    background-attachment: fixed, fixed;
-    background-repeat: no-repeat, no-repeat;
+body {
+    background-image: url('res/leavesT.jpg'), url('res/leavesBL.jpg'), url('res/leavesR.jpg');
+    background-position: center top, -10% 100%, 100% 20%;
+    background-attachment: fixed, fixed, fixed;
+    background-repeat: no-repeat, no-repeat, no-repeat;
 }
 

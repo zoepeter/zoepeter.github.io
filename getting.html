@@ -116,21 +116,16 @@ function windowInit(name){
 
 function resizing(){
   var w = $(window).width();
-  if( w > 1000 ){
-    var rhide = 0;
-    var lhide = 0;
-    if( w < 1300 ){
-      rhide = 1300-w;
-    }
-    if( w < 900 ){
-      lhide = 900-w;
-    }
-    $("body").addClass("leaves")
-      .css('background-position',
-        (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
-  }else{
-    $("body").removeClass("leaves");
+  var rhide = 0;
+  var lhide = 0;
+  if( w < 1280 ){
+    rhide = 1280-w;
   }
+  if( w < 900 ){
+    lhide = 900-w;
+  }
+  $("body").css('background-position',
+    'center top,'+(-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
 }
 
 function scrolling(){
