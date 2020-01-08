@@ -16,7 +16,7 @@ div.sticky {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index:1;
+    z-index:10;
     background: white;
     padding: 0px;
     margin-right: auto;
@@ -194,7 +194,7 @@ body {
     background-position: center 0%, -10% 100%, 100% 20%;
     background-attachment: fixed, fixed, fixed;
     background-repeat: no-repeat, no-repeat, no-repeat;
-	background-size: auto;
+	  background-size: auto;
 }
 
 @media screen and (max-width: 700px) {
@@ -211,4 +211,21 @@ h3 {
   h3 {
     font-size: 18pt;
   }
+}
+
+#car {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.car-text {
+  color: white;
+  background-color: rgba(0.5, 0.5, 0.5, 0.4);
+  margin-bottom: 0px !important;
+}
+
+.carousel-caption {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  z-index:9 !important;
 }
