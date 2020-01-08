@@ -4,8 +4,8 @@
 <body>
 <!-- include header.html -->
 
-<div id="imgED">
-  <img id="imgE" src="res/circle500.jpg">
+<div id="imgOfUsDiv">
+  <img id="imgOfUs" src="res/circle500.jpg">
   </img>
 </div>
 
@@ -14,11 +14,19 @@
 <!-- include footer.html -->
 
 <script>
-  $(document).ready(function(){
-    windowInit("home");
-  });
+$(document).ready(function(){
+  windowInit("home");
+});
 
-  <!-- include window.js -->
+<!-- include window.js -->
+
+function onResize(){
+  var w = $(window).width();
+  if( w < 500 ){
+    $("#imgOfUs").css('width', w);
+    $("#imgOfUs").css('height', w);
+  }
+}
 
 </script>
 

@@ -52,8 +52,8 @@
 
   <!-- end header.html -->
 
-<div id="imgED">
-  <img id="imgE" src="res/circle500.jpg">
+<div id="imgOfUsDiv">
+  <img id="imgOfUs" src="res/circle500.jpg">
   </img>
 </div>
 
@@ -69,22 +69,42 @@
 <!-- end footer.html -->
 
 <script>
-  $(document).ready(function(){
-    windowInit("home");
-  });
+$(document).ready(function(){
+  windowInit("home");
+});
 
 // window.js
 
 function windowInit(name){
   // Window Event handlers
   window.onscroll = scrolling;
-  $(window).resize(updateBgImages);
+  $(window).resize(resizing);
 
   // Highlight current nav link
   $("#"+name).removeClass("mynavlink")
   $("#"+name).addClass("disabled-link")
 
   // Must call initially:
+  resizing();
+}
+
+function scrolling(){
+  // if scrolled past the sticky bit, give it an underline
+  if($(".sticky").offset().top <= window.pageYOffset){
+    $("#nav").addClass("underlined");
+  }else{
+    $("#nav").removeClass("underlined");
+  }
+  // scroll the top background image
+  updateBgImages();
+}
+
+function resizing(){
+  // call onResize if it is implemented
+  if( typeof onResize == "function" ){
+    onResize();
+  }
+  // update background images
   updateBgImages();
 }
 
@@ -106,18 +126,15 @@ function updateBgImages(){
     'center '+(thide)+'px,'+(-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
 }
 
-function scrolling(){
-  // if scrolled past the sticky bit, give it an underline
-  if($(".sticky").offset().top <= window.pageYOffset){
-    $("#nav").addClass("underlined");
-  }else{
-    $("#nav").removeClass("underlined");
-  }
-  // scroll the top background image
-  updateBgImages();
-}
-
 // end window.js
+
+function onResize(){
+  var w = $(window).width();
+  if( w < 500 ){
+    $("#imgOfUs").css('width', w);
+    $("#imgOfUs").css('height', w);
+  }
+}
 
 </script>
 

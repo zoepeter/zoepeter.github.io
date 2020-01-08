@@ -74,7 +74,7 @@
   <h3> Shuttle Bus Information </h3>
   <p>
   If we get enough interest, we will organise a bus to ferry guests from a central location (probably the CBD) to the venue and back.
-  The bus will depart from the venue around 11:30pm to return to the pick-up point.
+  The bus will depart from the venue around 11pm to return to the pick-up point.
   </p>
   <p>
   If you are interested in taking the bus please let us know via the <a href="rsvp.html">RSVP form</a>.
@@ -104,13 +104,33 @@
 function windowInit(name){
   // Window Event handlers
   window.onscroll = scrolling;
-  $(window).resize(updateBgImages);
+  $(window).resize(resizing);
 
   // Highlight current nav link
   $("#"+name).removeClass("mynavlink")
   $("#"+name).addClass("disabled-link")
 
   // Must call initially:
+  resizing();
+}
+
+function scrolling(){
+  // if scrolled past the sticky bit, give it an underline
+  if($(".sticky").offset().top <= window.pageYOffset){
+    $("#nav").addClass("underlined");
+  }else{
+    $("#nav").removeClass("underlined");
+  }
+  // scroll the top background image
+  updateBgImages();
+}
+
+function resizing(){
+  // call onResize if it is implemented
+  if( typeof onResize == "function" ){
+    onResize();
+  }
+  // update background images
   updateBgImages();
 }
 
@@ -130,17 +150,6 @@ function updateBgImages(){
   }
   $("body").css('background-position',
     'center '+(thide)+'px,'+(-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
-}
-
-function scrolling(){
-  // if scrolled past the sticky bit, give it an underline
-  if($(".sticky").offset().top <= window.pageYOffset){
-    $("#nav").addClass("underlined");
-  }else{
-    $("#nav").removeClass("underlined");
-  }
-  // scroll the top background image
-  updateBgImages();
 }
 
 // end window.js

@@ -3,13 +3,33 @@
 function windowInit(name){
   // Window Event handlers
   window.onscroll = scrolling;
-  $(window).resize(updateBgImages);
+  $(window).resize(resizing);
 
   // Highlight current nav link
   $("#"+name).removeClass("mynavlink")
   $("#"+name).addClass("disabled-link")
 
   // Must call initially:
+  resizing();
+}
+
+function scrolling(){
+  // if scrolled past the sticky bit, give it an underline
+  if($(".sticky").offset().top <= window.pageYOffset){
+    $("#nav").addClass("underlined");
+  }else{
+    $("#nav").removeClass("underlined");
+  }
+  // scroll the top background image
+  updateBgImages();
+}
+
+function resizing(){
+  // call onResize if it is implemented
+  if( typeof onResize == "function" ){
+    onResize();
+  }
+  // update background images
   updateBgImages();
 }
 
@@ -29,17 +49,6 @@ function updateBgImages(){
   }
   $("body").css('background-position',
     'center '+(thide)+'px,'+(-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
-}
-
-function scrolling(){
-  // if scrolled past the sticky bit, give it an underline
-  if($(".sticky").offset().top <= window.pageYOffset){
-    $("#nav").addClass("underlined");
-  }else{
-    $("#nav").removeClass("underlined");
-  }
-  // scroll the top background image
-  updateBgImages();
 }
 
 // end window.js
