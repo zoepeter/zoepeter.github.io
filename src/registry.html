@@ -98,7 +98,7 @@
     giftSelected = giftid;  // make global
     $("#regDialogLabel").text(obj.title);
 	
-	if( obj.explId!=4 ){
+	if( obj.link!="" ){
 		$("#regPurchaseLink").html('<a style="text-decoration:underlined" target="_blank" href="'+obj.link+'">'+obj.text+'</a>');
 	}else{
 		// link is not provided for this type 
