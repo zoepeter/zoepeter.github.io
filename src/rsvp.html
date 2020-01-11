@@ -22,7 +22,7 @@
     </div>
   </div>
   <h3>RSVP</h3>
-  <p>Please let us know if you can attend by the 1st of February 2020</p>
+  <p>Please let us know if you can attend by the 8th of February 2020</p>
   <form>
     <div class="form-row col-md-12">
       <label style="padding-left:5px !important">Name</label>
@@ -123,11 +123,20 @@
     console.log("Submitted rsvp for "+rsvpObject.firstName)
     firebase.database().ref('rsvps').push().set(rsvpObject).then(
       function(snapshot) {
+        // Show success dialog
         $("#rsvpDialogLabel").text("Success");
         $("#rsvpDialogText").text("Thank you for updating us!");
         $("#rsvpDialog").modal("show");
         $("#collapseSubmit").collapse("show");
         $("#collapseSpinner").collapse("hide");
+        // Clear form
+        $("#rsvpFirstName").val("");
+        $("#rsvpLastName").val("");
+        $("#rsvpAttending").val("");
+        $("#rsvpWhoElse").val("");
+        $("#rsvpBusInterest").val("");
+        $("#rsvpDietary").val("");
+        $("#rsvpSongs").val("");
       }, function(error) {
         alert("Oops!\nSomething went wrong and your RSVP was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
       }
