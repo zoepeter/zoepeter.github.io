@@ -55,16 +55,21 @@
     <div class="form-group col-md-12 myformgroup">
       <label for="rsvpDietary">Do you have any specific dietary requirements or preferences*?</label>
       <input type="text" class="form-control" id="rsvpDietary" aria-describedby="dietExplainer"></input>
-      <small id="dietExplainer">*The main meal will be vegan or omnivore paella but some alternatives may be served alongside. Let us know if you are not a fan of paella so we can include options that you will like (e.g. quiche).
+      <small id="dietExplainer">*The main meal will be vegan or omnivore paella but some alternatives may be served alongside.
+         Let us know if you are not a fan of paella so we can include options that you will like.
       </small>
     </div>
     <div class="form-group col-md-12 myformgroup">
       <label for="rsvpBusInterest">Are you interested in taking a bus from the city to Kuitpo and back<sup>&dagger;</sup>?</label>
-      <input type="text" class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer"></input>
+      <select class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer">
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
       <small id="busExplainer"><sup>&dagger;</sup>Refer to <a href="getting.html#bus">Getting There</a> for more information.</small>
     </div>
     <div class="form-group col-md-12 myformgroup">
-      <label for="rsvpComment">Comments or Additional Song Requests:</label>
+      <label for="rsvpComment">Comments (or additional song requests):</label>
       <textarea class="form-control" id="rsvpComment" rows="2"></textarea>
     </div>
     <div class="form-group col-md-12 spacious">
