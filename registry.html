@@ -32,7 +32,7 @@
 <!-- header.html -->
 <div>
   <h1 class="mytitle">Zoe & Peter</h1>
-  <p class="mysubtitle">29 March 2020</p>
+  <p class="mysubtitle">14 February 2021</p>
 </div>
 
 <div class="sticky">
@@ -225,6 +225,18 @@ function firebaseInit() {
     if( obj.explId==1 ){
       $("#regExplanation").text(
         "This gift is available at the above link, but an equivalent one can be bought elsewhere.");
+
+    }else if( obj.explId==2 ){
+      $("#regExplanation").text(
+        "#explain2");
+
+    }else if( obj.explId==3 ){
+      $("#regExplanation").text(
+        "#explain3");
+
+    }else if( obj.explId==4 ){
+      $("#regExplanation").text(
+        "explain4");
 
     }else{
       $("#regExplanation").text("explain#"+obj.explId);

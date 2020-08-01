@@ -32,7 +32,7 @@
 <!-- header.html -->
 <div>
   <h1 class="mytitle">Zoe & Peter</h1>
-  <p class="mysubtitle">29 March 2020</p>
+  <p class="mysubtitle">14 February 2021</p>
 </div>
 
 <div class="sticky">
@@ -70,7 +70,10 @@
     </div>
   </div>
   <h2>RSVP</h2>
-  <p>Please let us know if you can attend by the 1st of February 2020</p>
+  <p>
+  While we still have your details from the first RSVP, we would really appreciate if you could update us for the new date.
+  </p><p>
+  Please let us know if you can attend by the 1st of January 2021</p>
   <form>
     <div class="form-row col-md-12"><label>Name</label></div>
     <div class="form-row col-md-12">
@@ -85,7 +88,11 @@
     </div>
     <div class="form-group col-md-12">
       <label for="rsvpAttending">Are you attending?</label>
-      <input type="text" class="form-control" id="rsvpAttending"></input>
+      <select class="form-control" id="rsvpAttending">
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
     </div>
     <div class="form-group col-md-12">
       <label for="rsvpDietary">Do you have any specific dietary requirements?</label>
@@ -96,13 +103,13 @@
       <input type="text" class="form-control" id="rsvpWhoElse"></input>
     </div>
     <div class="form-group col-md-12">
-      <label for="rsvpBusInterest">Would you take a bus* if it was an option?</label>
+      <label for="rsvpBusInterest">Are you interested in taking a bus from the city to Kuitpo and back?</label>
       <input type="text" class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer"></input>
-      <small id="busExplainer">*If we get enough interest, we will provide a bus from a central location to the venue and back.</small>
+      <small id="busExplainer">Refer to <a href="getting.html#bus">Getting There</a> for more information.</small>
     </div>
     <div class="form-group col-md-12">
-      <label for="rsvpSongs">What songs will get you on the dance floor?</label>
-      <textarea class="form-control" id="rsvpSongs" rows="2"></textarea>
+      <label for="rsvpComment">Comments/Song Requests:</label>
+      <textarea class="form-control" id="rsvpComment" rows="2"></textarea>
     </div>
     <div class="form-group col-md-12 spacious">
       <div id="collapseSubmit">
@@ -134,7 +141,7 @@
     $("#rsvpSubmit").click(submitRsvp);
 
     $("#collapseSubmit").collapse("show");
-    $("#rsvpSongs").css("resize", "vertical");
+    $("#rsvpComment").css("resize", "vertical");
     $("#navRsvp").addClass("active");
   });
 
@@ -211,7 +218,7 @@ function firebaseInit() {
       whoElse: $("#rsvpWhoElse").val(),
       busInterest: $("#rsvpBusInterest").val(),
       dietaryReq: $("#rsvpDietary").val(),
-      songSuggestions: $("#rsvpSongs").val(),
+      comment: $("#rsvpComment").val(),
       timestamp: +new Date()
     };
 
