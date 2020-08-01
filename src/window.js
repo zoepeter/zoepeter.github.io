@@ -13,25 +13,6 @@ function windowInit(name){
   resizing();
 }
 
-function resizing(){
-  var w = $(window).width();
-  if( w > 1000 ){
-    var rhide = 0;
-    var lhide = 0;
-    if( w < 1300 ){
-      rhide = 1300-w;
-    }
-    if( w < 900 ){
-      lhide = 900-w;
-    }
-    $("body").addClass("leaves")
-      .css('background-position',
-        (-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
-  }else{
-    $("body").removeClass("leaves");
-  }
-}
-
 function scrolling(){
   // if scrolled past the sticky bit, give it an underline
   if($(".sticky").offset().top <= window.pageYOffset){
@@ -39,6 +20,35 @@ function scrolling(){
   }else{
     $("#nav").removeClass("underlined");
   }
+  // scroll the top background image
+  updateBgImages();
+}
+
+function resizing(){
+  // call onResize if it is implemented
+  if( typeof onResize == "function" ){
+    onResize();
+  }
+  // update background images
+  updateBgImages();
+}
+
+function updateBgImages(){
+  var w = $(window).width();
+  var rhide = 0;
+  var lhide = 0;
+  if( w < 1280 ){
+    rhide = 1280-w;
+  }
+  if( w < 900 ){
+    lhide = 900-w;
+  }
+  var thide = -window.pageYOffset;
+  if( w < 700 ){
+	  thide += (700-w)/20;
+  }
+  $("body").css('background-position',
+    'center '+(thide)+'px,'+(-rhide)+'px 100%, '+(w+lhide-150)+'px 20%');
 }
 
 // end window.js

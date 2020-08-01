@@ -21,24 +21,26 @@
       </div>
     </div>
   </div>
-  <h2>RSVP</h2>
+  <h3>RSVP</h3>
   <p>
   While we still have your details from the first RSVP, we would really appreciate if you could update us for the new date.
   </p><p>
   Please let us know if you can attend by the 1st of January 2021</p>
   <form>
-    <div class="form-row col-md-12"><label>Name</label></div>
     <div class="form-row col-md-12">
-      <div class="form-group col-md-6">
+      <label style="padding-left:5px !important">Name</label>
+    </div>
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-6 myformgroup">
         <input type="text" class="form-control" id="rsvpFirstName" aria-describedby="rsvpFirstNameLabel" maxlength="32"></input>
         <small id="rsvpFirstNameLabel" class="form-text text-mutex">First Name</small>
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6 myformgroup">
         <input type="text" class="form-control" id="rsvpLastName" aria-describedby="rsvpLastNameLabel" maxlength="32"></input>
         <small id="rsvpLastNameLabel" class="form-text text-mutex">Last Name</small>
       </div>
     </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-12 myformgroup">
       <label for="rsvpAttending">Are you attending?</label>
       <select class="form-control" id="rsvpAttending">
         <option></option>
@@ -46,21 +48,23 @@
         <option>No</option>
       </select>
     </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpDietary">Do you have any specific dietary requirements?</label>
-      <input type="text" class="form-control" id="rsvpDietary"></input>
-    </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-12 myformgroup">
       <label for="rsvpWhoElse">Who else is coming with you?</label>
       <input type="text" class="form-control" id="rsvpWhoElse"></input>
     </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpBusInterest">Are you interested in taking a bus from the city to Kuitpo and back?</label>
-      <input type="text" class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer"></input>
-      <small id="busExplainer">Refer to <a href="getting.html#bus">Getting There</a> for more information.</small>
+    <div class="form-group col-md-12 myformgroup">
+      <label for="rsvpDietary">Do you have any specific dietary requirements or preferences*?</label>
+      <input type="text" class="form-control" id="rsvpDietary" aria-describedby="dietExplainer"></input>
+      <small id="dietExplainer">*The main meal will be vegan or omnivore paella but some alternatives may be served alongside. Let us know if you are not a fan of paella so we can include options that you will like (e.g. quiche).
+      </small>
     </div>
-    <div class="form-group col-md-12">
-      <label for="rsvpComment">Comments/Song Requests:</label>
+    <div class="form-group col-md-12 myformgroup">
+      <label for="rsvpBusInterest">Are you interested in taking a bus from the city to Kuitpo and back<sup>&dagger;</sup>?</label>
+      <input type="text" class="form-control" id="rsvpBusInterest" aria-describedby="busExplainer"></input>
+      <small id="busExplainer"><sup>&dagger;</sup>Refer to <a href="getting.html#bus">Getting There</a> for more information.</small>
+    </div>
+    <div class="form-group col-md-12 myformgroup">
+      <label for="rsvpComment">Comments or Additional Song Requests:</label>
       <textarea class="form-control" id="rsvpComment" rows="2"></textarea>
     </div>
     <div class="form-group col-md-12 spacious">
@@ -94,6 +98,8 @@
   <!-- include firebase.js -->
 
   function submitRsvp(name) {
+    var date= new Date();
+    var datetime= new Date(date.getTime() - (date.getTimezoneOffset()*60000)).toISOString();
     var rsvpObject = {
       firstName: $("#rsvpFirstName").val(),
       lastName: $("#rsvpLastName").val(),
@@ -102,7 +108,7 @@
       busInterest: $("#rsvpBusInterest").val(),
       dietaryReq: $("#rsvpDietary").val(),
       comment: $("#rsvpComment").val(),
-      timestamp: +new Date()
+      timestamp:datetime 
     };
 
     var reqList = [];
@@ -126,11 +132,20 @@
     console.log("Submitted rsvp for "+rsvpObject.firstName)
     firebase.database().ref('rsvps').push().set(rsvpObject).then(
       function(snapshot) {
+        // Show success dialog
         $("#rsvpDialogLabel").text("Success");
         $("#rsvpDialogText").text("Thank you for updating us!");
         $("#rsvpDialog").modal("show");
         $("#collapseSubmit").collapse("show");
         $("#collapseSpinner").collapse("hide");
+        // Clear form
+        $("#rsvpFirstName").val("");
+        $("#rsvpLastName").val("");
+        $("#rsvpAttending").val("");
+        $("#rsvpWhoElse").val("");
+        $("#rsvpBusInterest").val("");
+        $("#rsvpDietary").val("");
+        $("#rsvpComment").val("");
       }, function(error) {
         alert("Oops!\nSomething went wrong and your RSVP was not accepted!\nCould you please conact zoepeterwedding2020@gmail.com instead");
       }

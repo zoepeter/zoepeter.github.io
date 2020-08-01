@@ -14,11 +14,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <p id="regDialogText"></p>
           <p id="regPurchaseLink"></p>
           <p id="regExplanation"></p>
           <p>
-          If you wish to register this gift, please submit your name (this will be kept private).
+          To register this gift, submit your name below (this will be kept private).
           </p>
           <form>
             <div class="form-group">
@@ -57,7 +56,7 @@
     </div>
   </div>
 
-  <h2>Registry</h2>
+  <h3>Registry</h3>
   <p>
   Your presence is the only present we could ask for. However, if you really want to grace us with a gift, we have picked out a few suggestions.
   </p>
@@ -98,12 +97,13 @@
     var obj = registry[giftid];
     giftSelected = giftid;  // make global
     $("#regDialogLabel").text(obj.title);
-    $("#regDialogText").text(obj.text);
-    var linkText = obj.link+'">'+obj.title;
-    if( obj.price > 0 ){
-      linkText += ' - $'+obj.price;
-    }
-    $("#regPurchaseLink").html('<a style="text-decoration:underlined" target="_blank" href="'+linkText+'</a>');
+	
+	if( obj.link!="" ){
+		$("#regPurchaseLink").html('<a style="text-decoration:underlined" target="_blank" href="'+obj.link+'">'+obj.text+'</a>');
+	}else{
+		// link is not provided for this type 
+		$("#regPurchaseLink").html('');
+	}
 
     if( obj.explId==1 ){
       $("#regExplanation").text(
@@ -111,18 +111,18 @@
 
     }else if( obj.explId==2 ){
       $("#regExplanation").text(
-        "#explain2");
+        "If you would like to give us this gift, please bring cash or a cheque to the wedding!");
 
     }else if( obj.explId==3 ){
       $("#regExplanation").text(
-        "#explain3");
+        "Please donate using the above link (or, if you would rather, bring cash or cheque to the wedding and we will donate for you).");
 
     }else if( obj.explId==4 ){
       $("#regExplanation").text(
-        "explain4");
+        "If you would like to contribute towards our honeymoon, please bring cash or cheque to the wedding");
 
     }else{
-      $("#regExplanation").text("explain#"+obj.explId);
+      $("#regExplanation").text("...");
     }
 
     if( obj.numLeft>1 ){
@@ -166,6 +166,7 @@
         // Callback for the transaction
         if(err || !success) {
           alert("Looks like someone beat you to it at the last second!\nIf you think something went wrong, contact zoepeterwedding2020@gmail.com");
+          refreshRegistry();
           return;
         }
         // Counter successfully updated
