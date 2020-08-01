@@ -99,7 +99,9 @@
 
   function submitRsvp(name) {
     var date= new Date();
-    var datetime= new Date(date.getTime() - (date.getTimezoneOffset()*60000)).toISOString();
+    var timestamp= new Date(date.getTime() - (date.getTimezoneOffset()*60000)).toISOString();
+    timestamp= timestamp.replace("T"," ").replace("Z", "");
+    console.log(timestamp);
     var rsvpObject = {
       firstName: $("#rsvpFirstName").val(),
       lastName: $("#rsvpLastName").val(),
@@ -108,8 +110,9 @@
       busInterest: $("#rsvpBusInterest").val(),
       dietaryReq: $("#rsvpDietary").val(),
       comment: $("#rsvpComment").val(),
-      timestamp:datetime 
+      timestamp:timestamp 
     };
+    console.log(rsvpObject);
 
     var reqList = [];
     if( !rsvpObject.firstName ){ reqList.push("first name"); }

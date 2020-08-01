@@ -32,7 +32,7 @@
 <!-- header.html -->
 <div>
   <h1 class="mytitle">Zoe & Peter</h1>
-  <p class="mysubtitle">14 February 2021</p>
+  <p class="mysubtitle" id="subtitle">14 February 2021</p>
 </div>
 
 <div class="sticky">
@@ -225,6 +225,10 @@ function firebaseInit() {
 // end firebase.js
 
   function submitRsvp(name) {
+    var date= new Date();
+    var timestamp= new Date(date.getTime() - (date.getTimezoneOffset()*60000)).toISOString();
+    timestamp= timestamp.replace("T"," ").replace("Z", "");
+    console.log(timestamp);
     var rsvpObject = {
       firstName: $("#rsvpFirstName").val(),
       lastName: $("#rsvpLastName").val(),
@@ -233,8 +237,9 @@ function firebaseInit() {
       busInterest: $("#rsvpBusInterest").val(),
       dietaryReq: $("#rsvpDietary").val(),
       comment: $("#rsvpComment").val(),
-      timestamp: +new Date()
+      timestamp:timestamp 
     };
+    console.log(rsvpObject);
 
     var reqList = [];
     if( !rsvpObject.firstName ){ reqList.push("first name"); }

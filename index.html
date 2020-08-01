@@ -33,7 +33,7 @@
 <!-- header.html -->
 <div>
   <h1 class="mytitle">Zoe & Peter</h1>
-  <p class="mysubtitle">14 February 2021</p>
+  <p class="mysubtitle" id="subtitle">14 February 2021</p>
 </div>
 
 <div class="sticky">
@@ -72,6 +72,7 @@
 <script>
 $(document).ready(function(){
   windowInit("home");
+  $("#subtitle").addClass("glow");
 });
 
 // window.js

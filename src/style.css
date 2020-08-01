@@ -127,6 +127,23 @@ div.sticky {
     margin: 0px;
 }
 
+.glow {
+  -webkit-animation: glow 1s normal forwards;
+  -moz-animation: glow 1s normal forwards;
+  animation: glow 1s normal forwards;
+  animation-delay: 0.5s;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 3px #009933, 0 0 3px #009933, 0 0 6px #33cc33, 0 0 9px #33cc33, 0 0 12px #33cc33;
+  }
+  to {
+    text-shadow: 0 0 50px #fff, 0 0 50px #fff, 0 0 50px #fff, 0 0 50px #fff, 0 0 50px #fff;
+  }
+}
+
+
 .regLink {
     cursor:pointer;
 }
@@ -240,3 +257,5 @@ h3 {
   padding-bottom: 0px !important;
   z-index:9 !important;
 }
+
+
